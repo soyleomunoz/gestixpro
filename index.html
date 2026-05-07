@@ -20,6 +20,188 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
 
   <style>
+
+    /* ============================================================
+    PROGRAMA DE REFERIDOS
+    ============================================================ */
+    #referidos { background: var(--deep); }
+
+    .ref-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .ref-info h3 {
+      font-family: var(--font-h);
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .ref-info p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .ref-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 32px;
+    }
+
+    .ref-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .ref-step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .ref-step-text h5 {
+      font-family: var(--font-h);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .ref-step-text p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .ref-commission {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      margin-top: 28px;
+    }
+
+    .ref-commission-pct {
+      font-family: var(--font-h);
+      font-size: 2rem;
+      font-weight: 800;
+      color: #86efac;
+    }
+
+    .ref-commission-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .ref-commission-text strong {
+      display: block;
+      color: #86efac;
+      font-family: var(--font-h);
+    }
+
+    .ref-form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    .ref-form-wrap h4 {
+      font-family: var(--font-h);
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .ref-form-wrap > p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .ref-code-result {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(0,194,224,0.06);
+      border: 1px solid rgba(0,194,224,0.2);
+      text-align: center;
+    }
+
+    .ref-code-result.show { display: block; }
+
+    .ref-code-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .ref-code-value {
+      font-family: var(--font-h);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .ref-code-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .ref-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      background: #25d366;
+      color: #fff;
+      font-family: var(--font-h);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+      width: 100%;
+      justify-content: center;
+    }
+
+    .ref-wa-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(37,211,102,0.5);
+    }
+
+    @media (max-width: 860px) {
+      .ref-inner { grid-template-columns: 1fr; gap: 40px; }
+      .ref-form-wrap { padding: 28px 24px; }
+    }
+
     /* ============================================================
        CSS VARIABLES & RESET
     ============================================================ */
@@ -776,7 +958,7 @@
     /* ============================================================
        BLOG
     ============================================================ */
-    #blog { background: var(--navy); }
+    #blog { background: var(--deep); }
     .blog-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -848,7 +1030,7 @@
     /* ============================================================
        FAQ
     ============================================================ */
-    #faq { background: var(--deep); }
+    #faq { background: var(--navy); }
     .faq-list {
       max-width: 780px;
       margin: 56px auto 0;
@@ -1191,7 +1373,7 @@
        PORTAFOLIO
     ============================================================ */
     #portafolio {
-      background: var(--deep);
+      background: var(--navy);
       position: relative;
       overflow: hidden;
     }
@@ -1825,6 +2007,7 @@
         <li role="none"><a href="#nosotros" role="menuitem">Nosotros</a></li>
         <li role="none"><a href="#portafolio" role="menuitem">Portafolio</a></li>
         <li role="none"><a href="#blog" role="menuitem">Blog</a></li>
+        <li role="none"><a href="#referidos" role="menuitem">Referidos</a></li>
         <li role="none"><a href="#contacto" role="menuitem">Contacto</a></li>
         <li role="none" class="nav-cta"><a href="#contacto" class="btn btn-primary" role="menuitem">Empezar ahora</a></li>
       </ul>
@@ -2645,6 +2828,109 @@
     </div>
   </section>
 
+  <!-- ===================== REFERIDOS ===================== -->
+  <section id="referidos" class="section" aria-labelledby="ref-title">
+    <div class="container">
+      <div class="ref-inner">
+
+        <!-- Info izquierda -->
+        <div class="reveal-left">
+          <span class="section-label">Programa de referidos</span>
+          <h2 class="section-title" id="ref-title">Recomiéndanos y <span>gana dinero</span></h2>
+          <div class="ref-info">
+            <p>¿Conoces a alguien que necesite una web profesional? Comparte tu código único, y cuando esa persona contrate con nosotros, <strong style="color:var(--white)">tú recibes una comisión</strong>. Así de simple.</p>
+          </div>
+
+          <div class="ref-steps">
+            <div class="ref-step">
+              <div class="ref-step-num">1</div>
+              <div class="ref-step-text">
+                <h5>Regístrate y obtén tu código</h5>
+                <p>Completa el formulario y recibe tu código único de referido al instante.</p>
+              </div>
+            </div>
+            <div class="ref-step">
+              <div class="ref-step-num">2</div>
+              <div class="ref-step-text">
+                <h5>Comparte en tus grupos</h5>
+                <p>Te generamos un mensaje listo para compartir en WhatsApp con tu código incluido.</p>
+              </div>
+            </div>
+            <div class="ref-step">
+              <div class="ref-step-num">3</div>
+              <div class="ref-step-text">
+                <h5>Cobra tu comisión</h5>
+                <p>Cuando alguien contrate mencionando tu código, te transferimos el 10% del proyecto.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ref-commission">
+            <div class="ref-commission-pct">10%</div>
+            <div class="ref-commission-text">
+              <strong>Comisión por referido</strong>
+              Del valor total del proyecto contratado
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario derecha -->
+        <div class="reveal-right">
+          <div class="ref-form-wrap">
+            <h4>Obtén tu código ahora</h4>
+            <p>Es gratis, toma 30 segundos y puedes empezar a ganar de inmediato.</p>
+
+            <form id="ref-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ref-nombre">Nombre</label>
+                  <input type="text" id="ref-nombre" placeholder="Ej: Carlos" />
+                  <span class="field-error" id="ref-nombre-error">Por favor ingresa tu nombre.</span>
+                </div>
+                <div class="form-group">
+                  <label for="ref-apellido">Apellido</label>
+                  <input type="text" id="ref-apellido" placeholder="Ej: Pérez" />
+                  <span class="field-error" id="ref-apellido-error">Por favor ingresa tu apellido.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ref-telefono">Tu WhatsApp</label>
+                <input type="tel" id="ref-telefono" placeholder="+56 9 XXXX XXXX" />
+                <span class="field-error" id="ref-telefono-error">Por favor ingresa tu WhatsApp.</span>
+              </div>
+              <div class="form-group">
+                <label for="ref-ciudad">Tu ciudad</label>
+                <input type="text" id="ref-ciudad" placeholder="Ej: Santiago, Concepción..." />
+                <span class="field-error" id="ref-ciudad-error">Por favor ingresa tu ciudad.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:16px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Generar mi código gratis
+              </button>
+            </form>
+
+            <!-- Resultado -->
+            <div class="ref-code-result" id="ref-result">
+              <div class="ref-code-label">Tu código de referido es</div>
+              <div class="ref-code-value" id="ref-code-display">—</div>
+              <div class="ref-code-desc">
+                Guarda este código. Cuando alguien contrate mencionándolo,
+                te avisamos y te transferimos tu comisión 💰
+              </div>
+              <button class="ref-wa-btn" id="ref-wa-share">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.52 5.847L.057 23.5l5.835-1.53A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.37l-.36-.213-3.72.975.992-3.624-.234-.373A9.818 9.818 0 1112 21.818z"/></svg>
+                Compartir mi código por WhatsApp
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== CONTACT ===================== -->
   <section id="contacto" class="section" aria-labelledby="contact-title">
     <div class="container">
@@ -2855,6 +3141,103 @@
 
   <!-- ===================== JAVASCRIPT ===================== -->
   <script>
+
+    // ─── PROGRAMA DE REFERIDOS ────────────────────────────────
+    const refForm = document.getElementById('ref-form');
+
+    function generarCodigo(nombre) {
+      const primeras = nombre.trim().split(' ')[0].toUpperCase().slice(0, 4);
+      const rand = Math.floor(1000 + Math.random() * 9000);
+      return `REF-${primeras}-${rand}`;
+    }
+
+    refForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre   = document.getElementById('ref-nombre').value.trim();
+      const apellido = document.getElementById('ref-apellido').value.trim();
+      const telefono = document.getElementById('ref-telefono').value.trim();
+      const ciudad   = document.getElementById('ref-ciudad').value.trim();
+      let valid = true;
+
+      const errNombre   = document.getElementById('ref-nombre-error');
+      const errTelefono = document.getElementById('ref-telefono-error');
+      const errCiudad   = document.getElementById('ref-ciudad-error');
+      const inNombre    = document.getElementById('ref-nombre');
+      const inTelefono  = document.getElementById('ref-telefono');
+      const inCiudad    = document.getElementById('ref-ciudad');
+
+      // Validaciones
+      if (!nombre) {
+        errNombre.classList.add('show'); inNombre.classList.add('error'); valid = false;
+      } else {
+        errNombre.classList.remove('show'); inNombre.classList.remove('error');
+      }
+      const errApellido = document.getElementById('ref-apellido-error');
+      const inApellido  = document.getElementById('ref-apellido');
+      if (!apellido) {
+        errApellido.classList.add('show'); inApellido.classList.add('error'); valid = false;
+      } else {
+        errApellido.classList.remove('show'); inApellido.classList.remove('error');
+      }
+      if (!telefono) {
+        errTelefono.classList.add('show'); inTelefono.classList.add('error'); valid = false;
+      } else {
+        errTelefono.classList.remove('show'); inTelefono.classList.remove('error');
+      }
+      if (!ciudad) {
+        errCiudad.classList.add('show'); inCiudad.classList.add('error'); valid = false;
+      } else {
+        errCiudad.classList.remove('show'); inCiudad.classList.remove('error');
+      }
+
+      if (!valid) return;
+
+      // Generar código
+      const codigo = generarCodigo(nombre);
+      document.getElementById('ref-code-display').textContent = codigo;
+
+      // Mostrar resultado
+      document.getElementById('ref-result').classList.add('show');
+
+      // Notificar a GestixPro por WhatsApp
+      const msgGestix =
+        `🔔 *Nuevo referido registrado Gestixpro*\n\n` +
+        `👤 *Nombre:* ${nombre} ${apellido}\n` +
+        `📞 *WhatsApp:* ${telefono}\n` +
+        `📍 *Ciudad:* ${ciudad}\n` +
+        `🎟️ *Código asignado:* ${codigo}`;
+
+      const urlGestix = `https://api.whatsapp.com/send?phone=56975233425&text=${encodeURIComponent(msgGestix)}`;
+      window.open(urlGestix, '_blank');
+
+      // Preparar mensaje para compartir
+      const msgCompartir =
+        `Hola a todos 👋\n\n` +
+        `Les comparto algo que puede interesarle a quienes tienen negocio propio 💼\n\n` +
+        `Hay una agencia digital chilena llamada *GestixPro* que está desarrollando webs profesionales para emprendedores y pymes 🇨🇱\n\n` +
+        `✅ Web lista en 7-14 días\n` +
+        `✅ Diseño moderno y profesional\n` +
+        `✅ Perfecta en celular y computador\n` +
+        `✅ Aparece en Google\n` +
+        `✅ Primera consulta gratis\n\n` +
+        `Si les interesa, contáctenlos aquí 👇\n` +
+        `👉 gestixpro.cl\n` +
+        `📲 +56 9 7523 3425\n\n` +
+        `➖➖➖➖➖➖➖➖➖➖\n` +
+        `🎟️ *Mi código de referido:* ${codigo}\n` +
+        `_(Menciónalo al contactarlos para que sepan que vas de mi parte)_`;
+
+      document.getElementById('ref-wa-share').onclick = () => {
+        const urlCompartir = `https://api.whatsapp.com/send?text=${encodeURIComponent(msgCompartir)}`;
+        window.open(urlCompartir, '_blank');
+      };
+
+      // Scroll suave al resultado
+      document.getElementById('ref-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      refForm.reset();
+    });
 
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
