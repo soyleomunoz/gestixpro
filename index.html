@@ -2888,7 +2888,7 @@
           </div>
 
           <div class="ref-commission">
-            <div class="ref-commission-pct">10%</div>
+            <div class="ref-commission-pct">20%</div>
             <div class="ref-commission-text">
               <strong>Comisión por referido</strong>
               Del valor total del proyecto contratado
@@ -3297,7 +3297,17 @@
       return `REF-${primeras}-${rand}`;
     }
 
-    refForm.addEventListener('submit', (e) => {
+    async function acortarUrl(urlLarga) {
+      try {
+        const res = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(urlLarga)}`);
+        const urlCorta = await res.text();
+        return urlCorta;
+      } catch {
+        return urlLarga; // Si falla, usa la URL larga como respaldo
+      }
+    }
+
+    refForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const nombre   = document.getElementById('ref-nombre').value.trim();
@@ -3348,16 +3358,23 @@
 
       // Notificar a GestixPro por WhatsApp
       const msgGestix =
-        `🔔 *Nuevo referido registrado Gestixpro*\n\n` +
-        `👤 *Nombre:* ${nombre} ${apellido}\n` +
-        `📞 *WhatsApp:* ${telefono}\n` +
-        `📍 *Ciudad:* ${ciudad}\n` +
-        `🎟️ *Código asignado:* ${codigo}`;
+      `👋 Hola GestixPro, quiero registrarme como referido.\n\n` +
+      `👤 *Nombre:* ${nombre} ${apellido}\n` +
+      `📞 *WhatsApp:* ${telefono}\n` +
+      `📍 *Ciudad:* ${ciudad}\n` +
+      `🎟️ *Código asignado:* ${codigo}\n\n` +
+      `_(Después de enviar este mensaje, regresa para el siguiente paso: "Compartir mi código por Whatsapp")_ 🚀`;
 
       const urlGestix = `https://api.whatsapp.com/send?phone=56975233425&text=${encodeURIComponent(msgGestix)}`;
       window.open(urlGestix, '_blank');
 
-      // Preparar mensaje para compartir
+      // Link de referido para compartir
+      const msgWhatsappReferido = `Hola GestixPro! 👋 Vengo del código de referido *${codigo}*. Quiero información sobre desarrollo web.`;
+      const linkReferido = `https://wa.me/56975233425?text=${encodeURIComponent(msgWhatsappReferido)}`;
+
+      // Acortar el link y preparar mensaje
+      const linkCorto = await acortarUrl(linkReferido);
+
       const msgCompartir =
         `Hola a todos 👋\n\n` +
         `Les comparto algo que puede interesarle a quienes tienen negocio propio 💼\n\n` +
@@ -3367,15 +3384,26 @@
         `✅ Perfecta en celular y computador\n` +
         `✅ Aparece en Google\n` +
         `✅ Primera consulta gratis\n\n` +
-        `Si les interesa, contáctenlos aquí 👇\n` +
+        `👇 *Escríbenos directamente aquí:*\n` +
+        `🔗 ${linkCorto}\n\n` +
+        `➖➖➖➖➖➖➖➖➖➖\n` +
         `👉 gestixpro.cl\n` +
         `📲 +56 9 7523 3425\n\n` +
-        `➖➖➖➖➖➖➖➖➖➖\n` +
         `🎟️ *Mi código de referido:* ${codigo}\n` +
         `_(Menciónalo al contactarlos para que sepan que vas de mi parte)_`;
 
-      document.getElementById('ref-wa-share').onclick = () => {
-        const urlCompartir = `https://api.whatsapp.com/send?text=${encodeURIComponent(msgCompartir)}`;
+      document.getElementById('ref-wa-share').onclick = async () => {
+        const btnShare = document.getElementById('ref-wa-share');
+        btnShare.textContent = 'Generando enlace...';
+        btnShare.disabled = true;
+
+        const urlCorta = await acortarUrl(linkReferido);
+        const msgFinal = msgCompartir.replace(linkReferido, urlCorta);
+
+        btnShare.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.52 5.847L.057 23.5l5.835-1.53A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.37l-.36-.213-3.72.975.992-3.624-.234-.373A9.818 9.818 0 1112 21.818z"/></svg> Compartir mi código por WhatsApp`;
+        btnShare.disabled = false;
+
+        const urlCompartir = `https://api.whatsapp.com/send?text=${encodeURIComponent(msgFinal)}`;
         window.open(urlCompartir, '_blank');
       };
 
