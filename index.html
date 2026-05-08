@@ -2920,10 +2920,26 @@
                 <input type="tel" id="ref-telefono" placeholder="+56 9 XXXX XXXX" />
                 <span class="field-error" id="ref-telefono-error">Por favor ingresa tu WhatsApp.</span>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="position:relative;">
                 <label for="ref-ciudad">Tu ciudad</label>
-                <input type="text" id="ref-ciudad" placeholder="Ej: Santiago, Concepción..." />
+                <input type="text" id="ref-ciudad" placeholder="Ej: Santiago, Concepción..." autocomplete="off" />
                 <span class="field-error" id="ref-ciudad-error">Por favor ingresa tu ciudad.</span>
+                <ul id="ref-ciudad-list" style="
+                  display:none;
+                  position:absolute;
+                  top:100%;
+                  left:0; right:0;
+                  background:#0d1f3c;
+                  border:1px solid rgba(255,255,255,0.07);
+                  border-top:none;
+                  border-radius:0 0 10px 10px;
+                  max-height:220px;
+                  overflow-y:auto;
+                  z-index:100;
+                  margin:0;
+                  padding:0;
+                  list-style:none;
+                "></ul>
               </div>
 
               <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:16px;">
@@ -3163,6 +3179,114 @@
 
   <!-- ===================== JAVASCRIPT ===================== -->
   <script>
+
+    // ─── AUTOCOMPLETE CIUDADES ────────────────────────────────
+    const ciudadesChile = [
+      'Arica','Iquique','Alto Hospicio','Tocopilla','Calama','Antofagasta',
+      'Mejillones','Taltal','Chañaral','Copiapó','Caldera','Vallenar',
+      'La Serena','Coquimbo','Ovalle','Illapel','Los Vilos','San Felipe',
+      'Los Andes','Quillota','Valparaíso','Viña del Mar','Quilpué',
+      'Villa Alemana','Concón','San Antonio','Rancagua','Machalí',
+      'San Fernando','Santa Cruz','Talca','Curicó','Linares','Constitución',
+      'Chillán','Chillán Viejo','Los Ángeles','Lebu','Cañete','Concepción',
+      'Talcahuano','Hualpén','San Pedro de la Paz','Coronel','Lota',
+      'Tomé','Penco','Temuco','Padre Las Casas','Angol','Victoria',
+      'Villarrica','Pucón','Valdivia','La Unión','Osorno','Puerto Montt',
+      'Puerto Varas','Castro','Ancud','Coyhaique','Aysén','Punta Arenas',
+      'Puerto Natales','Porvenir','Santiago','Puente Alto','Maipú',
+      'La Florida','Las Condes','Ñuñoa','Providencia','San Bernardo',
+      'El Bosque','Peñalolén','La Pintana','Quilicura','Pudahuel',
+      'Cerro Navia','Lo Prado','Estación Central','Recoleta','Independencia',
+      'Quinta Normal','Renca','Huechuraba','Conchalí','Vitacura',
+      'Lo Barnechea','La Reina','Macul','San Miguel','La Cisterna',
+      'El Monte','Talagante','Melipilla','Buin','Paine','Colina','Lampa'
+    ];
+
+    const inputCiudad = document.getElementById('ref-ciudad');
+    const listaCiudad = document.getElementById('ref-ciudad-list');
+
+    inputCiudad.addEventListener('input', () => {
+      const val = inputCiudad.value.trim().toLowerCase();
+      listaCiudad.innerHTML = '';
+
+      if (val.length < 2) {
+        listaCiudad.style.display = 'none';
+        return;
+      }
+
+      function sinAcentos(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      }
+
+      const coincidencias = ciudadesChile.filter(c =>
+        sinAcentos(c.toLowerCase()).includes(sinAcentos(val))
+      ).slice(0, 6);
+
+      if (coincidencias.length === 0) {
+        listaCiudad.style.display = 'none';
+        return;
+      }
+
+      coincidencias.forEach(ciudad => {
+        const li = document.createElement('li');
+        li.textContent = ciudad;
+        li.style.cssText = `
+          padding: 11px 16px;
+          cursor: pointer;
+          font-size: 0.9rem;
+          color: #a8d8ff;
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+          transition: background 0.2s;
+        `;
+        li.addEventListener('mouseenter', () => {
+          li.style.background = 'rgba(10,75,218,0.25)';
+        });
+        li.addEventListener('mouseleave', () => {
+          li.style.background = 'transparent';
+        });
+        li.addEventListener('mousedown', () => {
+          inputCiudad.value = ciudad;
+          listaCiudad.style.display = 'none';
+          document.getElementById('ref-ciudad-error').classList.remove('show');
+          inputCiudad.classList.remove('error');
+        });
+        listaCiudad.appendChild(li);
+      });
+
+      listaCiudad.style.display = 'block';
+    });
+
+    // Cerrar lista al hacer click fuera
+    document.addEventListener('click', (e) => {
+      if (!inputCiudad.contains(e.target) && !listaCiudad.contains(e.target)) {
+        listaCiudad.style.display = 'none';
+      }
+    });
+
+    // Navegación con teclado
+    inputCiudad.addEventListener('keydown', (e) => {
+      const items = listaCiudad.querySelectorAll('li');
+      const active = listaCiudad.querySelector('li.selected');
+      let idx = [...items].indexOf(active);
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (active) active.classList.remove('selected');
+        const next = items[idx + 1] || items[0];
+        if (next) { next.classList.add('selected'); next.style.background = 'rgba(10,75,218,0.25)'; }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (active) active.classList.remove('selected');
+        const prev = items[idx - 1] || items[items.length - 1];
+        if (prev) { prev.classList.add('selected'); prev.style.background = 'rgba(10,75,218,0.25)'; }
+      } else if (e.key === 'Enter' && active) {
+        e.preventDefault();
+        inputCiudad.value = active.textContent;
+        listaCiudad.style.display = 'none';
+      } else if (e.key === 'Escape') {
+        listaCiudad.style.display = 'none';
+      }
+    });
 
     // ─── PROGRAMA DE REFERIDOS ────────────────────────────────
     const refForm = document.getElementById('ref-form');
