@@ -3358,12 +3358,18 @@
 
       // Notificar a GestixPro por WhatsApp
       const msgGestix =
-      `👋 Hola GestixPro, quiero registrarme como referido.\n\n` +
-      `👤 *Nombre:* ${nombre} ${apellido}\n` +
-      `📞 *WhatsApp:* ${telefono}\n` +
-      `📍 *Ciudad:* ${ciudad}\n` +
-      `🎟️ *Código asignado:* ${codigo}\n\n` +
-      `_(Después de enviar este mensaje, regresa para el siguiente paso: "Compartir mi código por Whatsapp")_ 🚀`;
+        `━━━━━━━━━━━━━━━━━━━━\n` +
+        `📋 *PASO 1 DE 2 — REGISTRO*\n` +
+        `━━━━━━━━━━━━━━━━━━━━\n\n` +
+        `👋 Hola GestixPro, quiero registrarme como referido.\n\n` +
+        `👤 *Nombre:* ${nombre} ${apellido}\n` +
+        `📞 *WhatsApp:* ${telefono}\n` +
+        `📍 *Ciudad:* ${ciudad}\n` +
+        `🎟️ *Código asignado:* ${codigo}\n\n` +
+        `━━━━━━━━━━━━━━━━━━━━\n` +
+        `📤 *PASO 2 DE 2 — COMPARTIR*\n` +
+        `━━━━━━━━━━━━━━━━━━━━\n` +
+        `_Una vez enviado este mensaje, regresa a la web y presiona el botón_ *"Compartir mi código por WhatsApp"* _para comenzar a ganar tu comisión_ 🚀`;
 
       const urlGestix = `https://api.whatsapp.com/send?phone=56975233425&text=${encodeURIComponent(msgGestix)}`;
       window.open(urlGestix, '_blank');
