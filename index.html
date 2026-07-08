@@ -203,6 +203,145 @@
     }
 
     /* ============================================================
+       REFERRAL PROMO MODAL
+    ============================================================ */
+    .ref-promo-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      background: rgba(5,13,31,0.82);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .ref-promo-overlay.open { opacity: 1; pointer-events: all; }
+
+    .ref-promo-modal {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      background: linear-gradient(160deg, var(--surface), var(--deep));
+      border: 1px solid rgba(134,239,172,0.25);
+      border-radius: 22px;
+      padding: 44px 36px 36px;
+      text-align: center;
+      box-shadow: var(--shadow), 0 0 60px rgba(34,197,94,0.12);
+      transform: translateY(24px) scale(0.96);
+      opacity: 0;
+      transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+    }
+    .ref-promo-overlay.open .ref-promo-modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ref-promo-overlay, .ref-promo-modal { transition: none; }
+    }
+
+    .ref-promo-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .ref-promo-close:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .ref-promo-badge {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(34,197,94,0.18), rgba(0,194,224,0.12));
+      border: 1px solid rgba(134,239,172,0.35);
+      color: #86efac;
+    }
+
+    .ref-promo-modal h3 {
+      font-family: var(--font-h);
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .ref-promo-modal p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+    .ref-promo-modal p strong { color: var(--white); }
+
+    .ref-promo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+    .ref-promo-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-h);
+      color: var(--ice);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+    }
+
+    .ref-promo-cta {
+      width: 100%;
+      justify-content: center;
+      font-size: 0.95rem;
+      padding: 15px;
+    }
+
+    .ref-promo-dismiss {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: var(--font-b);
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 8px;
+      transition: color 0.25s;
+    }
+    .ref-promo-dismiss:hover { color: var(--white); }
+
+    @media (max-width: 480px) {
+      .ref-promo-modal { padding: 36px 24px 28px; }
+    }
+
+    /* ============================================================
        CSS VARIABLES & RESET
     ============================================================ */
     :root {
@@ -278,6 +417,17 @@
       font-size: 1.05rem;
       color: var(--muted);
       max-width: 560px;
+    }
+    #servicios .section-sub,
+    #blog .section-sub {
+      max-width: none;
+    }
+    @media (min-width: 700px) {
+      #servicios .section-sub,
+      #blog .section-sub {
+        white-space: nowrap;
+        font-size: clamp(0.85rem, 1.35vw, 1.05rem);
+      }
     }
 
     /* BUTTONS */
@@ -384,6 +534,54 @@
     }
     .nav-links a:hover { color: var(--cyan); }
     .nav-cta { margin-left: 12px; }
+
+    /* Highlighted "Referidos" nav item */
+    .nav-links a.nav-ref {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      color: #86efac;
+      background: linear-gradient(135deg, rgba(34,197,94,0.16), rgba(0,194,224,0.08));
+      border: 1px solid rgba(134,239,172,0.4);
+      animation: navRefGlow 2.6s ease-in-out infinite;
+    }
+    .nav-links a.nav-ref:hover {
+      color: #d9ffe8;
+      background: linear-gradient(135deg, rgba(34,197,94,0.3), rgba(0,194,224,0.14));
+      border-color: rgba(134,239,172,0.65);
+    }
+    .nav-ref-badge {
+      position: absolute;
+      top: -4px;
+      right: -3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+    .nav-ref-badge::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: navRefPing 2.2s cubic-bezier(0,0,0.2,1) infinite;
+    }
+    @keyframes navRefGlow {
+      0%, 100% { box-shadow: 0 0 0 rgba(34,197,94,0); }
+      50%      { box-shadow: 0 0 14px rgba(34,197,94,0.4); }
+    }
+    @keyframes navRefPing {
+      0%        { transform: scale(1); opacity: 0.8; }
+      75%,100%  { transform: scale(2.5); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .nav-links a.nav-ref { animation: none; }
+      .nav-ref-badge::after { animation: none; display: none; }
+    }
     .hamburger {
       display: none;
       flex-direction: column;
@@ -2007,7 +2205,13 @@
         <li role="none"><a href="#nosotros" role="menuitem">Nosotros</a></li>
         <li role="none"><a href="#portafolio" role="menuitem">Portafolio</a></li>
         <li role="none"><a href="#blog" role="menuitem">Blog</a></li>
-        <li role="none"><a href="#referidos" role="menuitem">Referidos</a></li>
+        <li role="none">
+          <a href="#referidos" role="menuitem" class="nav-ref">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            Referidos
+            <span class="nav-ref-badge" aria-hidden="true"></span>
+          </a>
+        </li>
         <li role="none"><a href="#contacto" role="menuitem">Contacto</a></li>
         <li role="none" class="nav-cta"><a href="#contacto" class="btn btn-primary" role="menuitem">Empezar ahora</a></li>
       </ul>
@@ -3163,6 +3367,39 @@
     </div>
   </footer>
 
+  <!-- ===================== REFERRAL PROMO MODAL ===================== -->
+  <div class="ref-promo-overlay" id="ref-promo-overlay">
+    <div class="ref-promo-modal" role="dialog" aria-modal="true" aria-labelledby="ref-promo-title" aria-describedby="ref-promo-desc">
+      <button type="button" class="ref-promo-close" id="ref-promo-close" aria-label="Cerrar ventana">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="ref-promo-badge" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+      </div>
+
+      <h3 id="ref-promo-title">Gana dinero recomendando GestixPro</h3>
+      <p id="ref-promo-desc">Recibe una <strong>comisión del 20%</strong> por cada persona que refieras y contrate con nosotros, ya sea un <strong>sitio web</strong> o un <strong>sistema a medida</strong>. Registrarte toma 30 segundos.</p>
+
+      <div class="ref-promo-tags">
+        <span class="ref-promo-tag">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Sitios web
+        </span>
+        <span class="ref-promo-tag">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+          Sistemas a medida
+        </span>
+      </div>
+
+      <button type="button" class="btn btn-primary ref-promo-cta" id="ref-promo-cta">
+        Crear mi código de referido
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
+      </button>
+      <button type="button" class="ref-promo-dismiss" id="ref-promo-dismiss">Ahora no</button>
+    </div>
+  </div>
+
   <!-- ===================== WHATSAPP FLOAT ===================== -->
   <a id="whatsapp-btn"
     href="https://api.whatsapp.com/send?phone=56975233425&text=Desde%20GestixPro%20-%20Quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
@@ -3791,6 +4028,78 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && pfLightbox.classList.contains('open')) closeLightbox();
     });
+
+    // ─── REFERRAL PROMO MODAL ──────────────────────────────────
+    (function () {
+      const overlay    = document.getElementById('ref-promo-overlay');
+      const modal      = overlay.querySelector('.ref-promo-modal');
+      const closeBtn   = document.getElementById('ref-promo-close');
+      const dismissBtn = document.getElementById('ref-promo-dismiss');
+      const ctaBtn     = document.getElementById('ref-promo-cta');
+      const STORAGE_KEY  = 'gxp_ref_promo_last_shown';
+      const COOLDOWN_MS  = 24 * 60 * 60 * 1000; // no volver a mostrar por 24h
+      const SHOW_DELAY   = 6000;
+      let lastFocused = null;
+
+      function shouldShow() {
+        try {
+          const last = localStorage.getItem(STORAGE_KEY);
+          return !last || (Date.now() - parseInt(last, 10) > COOLDOWN_MS);
+        } catch (e) { return true; }
+      }
+
+      function markShown() {
+        try { localStorage.setItem(STORAGE_KEY, Date.now().toString()); } catch (e) {}
+      }
+
+      function getFocusable() {
+        return Array.from(modal.querySelectorAll('button, a[href]')).filter(el => !el.disabled);
+      }
+
+      function onKeydown(e) {
+        if (e.key === 'Escape') { closeModal(); return; }
+        if (e.key === 'Tab') {
+          const focusable = getFocusable();
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last  = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault(); last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+          }
+        }
+      }
+
+      function openModal() {
+        lastFocused = document.activeElement;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+        markShown();
+        document.addEventListener('keydown', onKeydown);
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKeydown);
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+      closeBtn.addEventListener('click', closeModal);
+      dismissBtn.addEventListener('click', closeModal);
+
+      ctaBtn.addEventListener('click', () => {
+        closeModal();
+        document.getElementById('referidos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const nombreInput = document.getElementById('ref-nombre');
+        if (nombreInput) setTimeout(() => nombreInput.focus({ preventScroll: true }), 500);
+      });
+
+      if (shouldShow()) setTimeout(openModal, SHOW_DELAY);
+    })();
 
   </script>
 
