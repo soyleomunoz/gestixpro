@@ -3862,6 +3862,23 @@
     function isMobile() { return window.innerWidth <= 640; }
     function itemsPerPage() { return isMobile() ? ITEMS_MOBILE : ITEMS_DESKTOP; }
 
+    const pfOriginalOrder = [...document.querySelectorAll('#portfolio-grid .pf-card')];
+
+    function shufflePortfolioGrid() {
+      const grid = document.getElementById('portfolio-grid');
+      const cards = [...pfOriginalOrder];
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    function restorePortfolioOrder() {
+      const grid = document.getElementById('portfolio-grid');
+      pfOriginalOrder.forEach(card => grid.appendChild(card));
+    }
+
     function getFilteredCards() {
       return [...document.querySelectorAll('.pf-card')].filter(card => {
         const cats = card.dataset.category || '';
@@ -3999,6 +4016,8 @@
         btn.classList.add('active');
         pfCurrentFilter = btn.dataset.filter;
         pfCurrentPage   = 0;
+        if (pfCurrentFilter === 'all') shufflePortfolioGrid();
+        else restorePortfolioOrder();
         renderPortfolio();
       });
     });
@@ -4009,7 +4028,8 @@
       renderPortfolio();
     });
 
-    // Render inicial
+    // Render inicial (Todos en orden aleatorio)
+    shufflePortfolioGrid();
     renderPortfolio();
 
     // ─── PORTFOLIO LIGHTBOX ───────────────────────────────────
