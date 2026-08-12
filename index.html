@@ -15,6 +15,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="GestixPro – Soluciones Digitales" />
   <meta name="twitter:description" content="Digitaliza, automatiza y crece con GestixPro." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
@@ -632,7 +635,8 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      padding-top: 80px;
+      padding-top: 74px;
+      padding-bottom: 18px;
     }
     .hero-bg {
       position: absolute;
@@ -681,15 +685,15 @@
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
+      gap: 7px;
+      padding: 6px 15px;
       border-radius: 50px;
       background: rgba(0,194,224,0.1);
       border: 1px solid rgba(0,194,224,0.25);
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: var(--cyan);
-      margin-bottom: 28px;
+      margin-bottom: 16px;
       animation: fadeSlideDown 0.7s ease forwards;
     }
     .hero-badge-dot {
@@ -708,9 +712,9 @@
     }
     .hero-h1 {
       font-family: var(--font-h);
-      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-size: clamp(1.9rem, 3.4vw, 2.85rem);
       font-weight: 800;
-      line-height: 1.08;
+      line-height: 1.12;
       letter-spacing: -0.02em;
       animation: fadeSlideUp 0.8s 0.15s ease both;
     }
@@ -719,48 +723,52 @@
       display: block;
     }
     .hero-sub {
-      margin-top: 24px;
-      font-size: 1.12rem;
+      margin-top: 14px;
+      font-size: 0.92rem;
       color: rgba(245,249,255,0.65);
-      max-width: 580px;
-      line-height: 1.75;
+      max-width: 520px;
+      line-height: 1.6;
       animation: fadeSlideUp 0.8s 0.3s ease both;
     }
     .hero-actions {
-      margin-top: 40px;
+      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
       animation: fadeSlideUp 0.8s 0.45s ease both;
+    }
+    .hero-actions .btn {
+      padding: 12px 24px;
+      font-size: 0.82rem;
     }
     @keyframes fadeSlideUp {
       from { opacity:0; transform:translateY(24px); }
       to   { opacity:1; transform:translateY(0); }
     }
     .hero-stats {
-      margin-top: 72px;
+      margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
-      gap: 48px;
+      gap: 32px;
       animation: fadeSlideUp 0.8s 0.6s ease both;
     }
     .hero-stat-num {
       font-family: var(--font-h);
-      font-size: 2.4rem;
+      font-size: 1.55rem;
       font-weight: 800;
       color: var(--white);
     }
     .hero-stat-num span { color: var(--cyan); }
     .hero-stat-label {
-      font-size: 0.82rem;
+      font-size: 0.68rem;
       color: var(--muted);
-      margin-top: 4px;
-      letter-spacing: 0.06em;
+      margin-top: 2px;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
     @media (max-width: 600px) {
-      .hero-stats { gap: 28px; }
+      .hero-stats { gap: 22px; }
     }
 
     #hero-container {
@@ -830,6 +838,38 @@
       margin-bottom: 12px;
     }
     .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+    .service-card-featured {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 32px 36px;
+      background: linear-gradient(120deg, rgba(10,75,218,0.14), rgba(0,194,224,0.07));
+      border-color: rgba(30,111,255,0.25);
+    }
+    .service-card-featured .service-icon { margin-bottom: 0; flex-shrink: 0; }
+    .service-card-featured-text { flex: 1; }
+    .service-card-featured-text h3 { margin-bottom: 6px; }
+    .service-card-featured-text p { margin: 0; max-width: 620px; }
+    .service-card-featured-badge {
+      flex-shrink: 0;
+      font-family: var(--font-h);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0,194,224,0.1);
+      border: 1px solid rgba(0,194,224,0.25);
+      border-radius: 50px;
+      padding: 8px 16px;
+      white-space: nowrap;
+    }
+    @media (max-width: 720px) {
+      .service-card-featured { flex-direction: column; align-items: flex-start; text-align: left; }
+      .service-card-featured-badge { align-self: flex-start; }
+    }
 
     /* ============================================================
        BENEFITS
@@ -1186,9 +1226,23 @@
     .blog-thumb-1 { background: linear-gradient(135deg, #0a3080, #1e6fff55); }
     .blog-thumb-2 { background: linear-gradient(135deg, #00484d, #00c2e055); }
     .blog-thumb-3 { background: linear-gradient(135deg, #1e2a5e, #7c3aed55); }
+    .blog-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .blog-card:hover .blog-thumb img { transform: scale(1.06); }
     .blog-thumb-icon {
       font-size: 3.5rem;
       opacity: 0.6;
+    }
+    .blog-card { cursor: pointer; }
+    .blog-card:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
     }
     .blog-cat {
       position: absolute;
@@ -1202,6 +1256,7 @@
       background: rgba(0,0,0,0.5);
       backdrop-filter: blur(6px);
       border: 1px solid rgba(255,255,255,0.12);
+      z-index: 1;
     }
     .blog-body { padding: 28px; }
     .blog-date { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; }
@@ -1224,6 +1279,140 @@
       transition: gap 0.25s;
     }
     .blog-card:hover .blog-link { gap: 10px; }
+
+    /* ============================================================
+       BLOG READ MODAL
+    ============================================================ */
+    .blog-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2600;
+      background: rgba(5,13,31,0.86);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .blog-modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .blog-modal {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transform: translateY(28px) scale(0.97);
+      opacity: 0;
+      transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+    }
+    .blog-modal-overlay.open .blog-modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .blog-modal-overlay, .blog-modal { transition: none; }
+    }
+
+    .blog-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(5,13,31,0.55);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .blog-modal-close:hover {
+      background: rgba(5,13,31,0.8);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .blog-modal-cover {
+      position: relative;
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+    }
+    .blog-modal-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5,13,31,0) 40%, var(--surface) 100%);
+    }
+    .blog-modal-cat {
+      position: absolute;
+      top: 16px; left: 16px;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.12);
+      z-index: 1;
+    }
+
+    .blog-modal-body { padding: 8px 40px 44px; }
+    .blog-modal-date { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+    .blog-modal-title {
+      font-family: var(--font-h);
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+    .blog-modal-content p {
+      font-size: 0.96rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+    .blog-modal-content h4 {
+      font-family: var(--font-h);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 28px 0 12px;
+    }
+    .blog-modal-content ul {
+      margin: 0 0 18px;
+      padding-left: 20px;
+    }
+    .blog-modal-content li {
+      font-size: 0.94rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+    .blog-modal-content strong { color: var(--white); }
+    .blog-modal-cta { margin-top: 12px; justify-content: center; width: 100%; }
+
+    @media (max-width: 640px) {
+      .blog-modal-body { padding: 8px 22px 32px; }
+      .blog-modal-cover { height: 190px; }
+      .blog-modal-title { font-size: 1.35rem; }
+    }
 
     /* ============================================================
        FAQ
@@ -1646,31 +1835,16 @@
       overflow: hidden;
       background: #0a1328;
     }
-    .pf-preview iframe {
-      width: 200%;
-      height: 200%;
-      border: none;
-      transform: scale(0.5);
-      transform-origin: top left;
-      pointer-events: none;
-      display: block;
-    }
-    .pf-preview-fallback {
+    .pf-thumb-img {
       position: absolute;
       inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      text-align: center;
-      padding: 20px;
-      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s ease;
     }
-    .pf-preview-fallback .pf-emoji { font-size: 2.8rem; }
-    .pf-preview-fallback span { color: var(--ice); font-family: var(--font-h); font-size: 0.75rem; }
+    .pf-card:hover .pf-thumb-img { transform: scale(1.06); }
     .pf-overlay {
       position: absolute;
       inset: 0;
@@ -1894,7 +2068,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
-      gap: 14px;
+      gap: 10px;
       animation: fadeSlideUp 0.8s 0.5s ease both;
     }
 
@@ -1906,11 +2080,11 @@
     .hd-metrics {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
     .hd-metric {
-      padding: 18px 16px;
-      border-radius: 14px;
+      padding: 12px 12px;
+      border-radius: 12px;
       background: rgba(13,31,60,0.75);
       border: 1px solid rgba(255,255,255,0.07);
       backdrop-filter: blur(16px);
@@ -1934,11 +2108,11 @@
     .hd-metric.m-green::before { background: linear-gradient(90deg, #22c55e, #00c2e0); }
 
     .hd-metric-icon {
-      width: 32px; height: 32px;
-      border-radius: 9px;
+      width: 24px; height: 24px;
+      border-radius: 7px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      margin-bottom: 10px;
+      font-size: 0.78rem;
+      margin-bottom: 6px;
     }
     .hd-metric.m-blue  .hd-metric-icon { background: rgba(10,75,218,0.2); }
     .hd-metric.m-cyan  .hd-metric-icon { background: rgba(0,194,224,0.15); }
@@ -1946,27 +2120,27 @@
 
     .hd-metric-val {
       font-family: var(--font-h);
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       font-weight: 800;
       line-height: 1;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
     .hd-metric.m-blue  .hd-metric-val { color: var(--ice); }
     .hd-metric.m-cyan  .hd-metric-val { color: var(--cyan); }
     .hd-metric.m-green .hd-metric-val { color: #86efac; }
 
-    .hd-metric-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+    .hd-metric-label { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
     .hd-metric-trend {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      margin-top: 7px;
-      font-size: 0.68rem;
+      margin-top: 4px;
+      font-size: 0.6rem;
       font-weight: 600;
       color: #86efac;
       background: rgba(34,197,94,0.1);
       border-radius: 50px;
-      padding: 2px 7px;
+      padding: 1px 6px;
     }
 
     /* Panel chart */
@@ -1974,30 +2148,30 @@
       background: rgba(13,31,60,0.7);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 18px;
-      padding: 22px;
+      border-radius: 16px;
+      padding: 14px 16px;
     }
     .hd-chart-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
     }
     .hd-chart-title {
       font-family: var(--font-h);
-      font-size: 0.86rem;
+      font-size: 0.78rem;
       font-weight: 700;
     }
-    .hd-chart-sub { font-size: 0.71rem; color: var(--muted); margin-top: 2px; }
+    .hd-chart-sub { font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
     .hd-live-badge {
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 50px;
       background: rgba(0,194,224,0.1);
       border: 1px solid rgba(0,194,224,0.2);
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 700;
       color: var(--cyan);
-      letter-spacing: 0.07em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
@@ -2014,8 +2188,8 @@
       display: flex;
       align-items: flex-end;
       gap: 6px;
-      height: 90px;
-      padding-bottom: 20px;
+      height: 56px;
+      padding-bottom: 14px;
     }
     .hd-bar-group {
       flex: 1;
@@ -2080,63 +2254,63 @@
     .hd-bottom {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
 
     .hd-glass {
       background: rgba(13,31,60,0.7);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 16px;
-      padding: 18px;
+      border-radius: 14px;
+      padding: 12px 14px;
     }
 
     .hd-panel-title {
       font-family: var(--font-h);
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 7px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .hd-count-badge {
-      font-size: 0.64rem;
+      font-size: 0.58rem;
       color: var(--cyan);
       background: rgba(0,194,224,0.1);
       border: 1px solid rgba(0,194,224,0.2);
       border-radius: 50px;
-      padding: 2px 8px;
+      padding: 2px 7px;
     }
 
     .hd-proj-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 7px 0;
+      gap: 7px;
+      padding: 4px 0;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     .hd-proj-item:last-child { border-bottom: none; }
     .hd-proj-dot {
-      width: 7px; height: 7px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       flex-shrink: 0;
     }
     .hd-proj-dot.live   { background:#22c55e; box-shadow:0 0 6px #22c55e88; }
     .hd-proj-dot.build  { background:#f59e0b; box-shadow:0 0 6px #f59e0b88; }
     .hd-proj-dot.review { background:#1e6fff; box-shadow:0 0 6px #1e6fff88; }
-    .hd-proj-name { font-size: 0.74rem; font-weight: 500; flex: 1; }
-    .hd-proj-bar-wrap { width: 52px; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+    .hd-proj-name { font-size: 0.66rem; font-weight: 500; flex: 1; }
+    .hd-proj-bar-wrap { width: 44px; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
     .hd-proj-bar-fill { height: 100%; border-radius: 2px; }
     .hd-proj-bar-fill.p1 { width:100%; background:linear-gradient(90deg,#22c55e,#00c2e0); }
     .hd-proj-bar-fill.p2 { width:65%;  background:linear-gradient(90deg,#f59e0b,#1e6fff); }
     .hd-proj-bar-fill.p3 { width:80%;  background:linear-gradient(90deg,#1e6fff,#00c2e0); }
-    .hd-proj-status { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .hd-proj-status { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
 
     /* Donut */
     .hd-donut-panel { display:flex; flex-direction:column; }
-    .hd-donut-wrap { position:relative; width:80px; height:80px; margin: 4px auto 10px; }
-    .hd-donut-wrap svg { transform: rotate(-90deg); }
+    .hd-donut-wrap { position:relative; width:56px; height:56px; margin: 2px auto 6px; }
+    .hd-donut-wrap svg { width:100%; height:100%; transform: rotate(-90deg); }
     .hd-donut-bg   { fill:none; stroke:rgba(255,255,255,0.06); stroke-width:9; }
     .hd-donut-fill {
       fill:none; stroke:url(#hdGrad); stroke-width:9; stroke-linecap:round;
@@ -2149,10 +2323,10 @@
       display:flex; flex-direction:column;
       align-items:center; justify-content:center;
     }
-    .hd-donut-pct { font-family:var(--font-h); font-size:1.15rem; font-weight:800; color:var(--cyan); }
-    .hd-donut-sub { font-size:0.5rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
-    .hd-legend { display:flex; flex-direction:column; gap:5px; }
-    .hd-legend-item { display:flex; align-items:center; gap:6px; font-size:0.68rem; color:var(--muted); }
+    .hd-donut-pct { font-family:var(--font-h); font-size:0.9rem; font-weight:800; color:var(--cyan); }
+    .hd-donut-sub { font-size:0.44rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+    .hd-legend { display:flex; flex-direction:column; gap:4px; }
+    .hd-legend-item { display:flex; align-items:center; gap:6px; font-size:0.6rem; color:var(--muted); }
     .hd-legend-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
 
     /* Floating badges sobre el dashboard */
@@ -2160,13 +2334,13 @@
       position: absolute;
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 13px;
-      border-radius: 11px;
+      gap: 7px;
+      padding: 7px 11px;
+      border-radius: 10px;
       background: rgba(9,24,54,0.92);
       border: 1px solid rgba(255,255,255,0.1);
       backdrop-filter: blur(16px);
-      font-size: 0.72rem;
+      font-size: 0.64rem;
       font-weight: 600;
       white-space: nowrap;
       box-shadow: 0 16px 40px rgba(0,0,0,0.35);
@@ -2227,7 +2401,7 @@
     <div class="hero-grid"></div>
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
-    <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end;">
+    <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:end;">
 
       <div class="hero-content">
         <div class="hero-badge">
@@ -2441,12 +2615,15 @@
           <p>Videos corporativos, reels, fotografía y contenido creativo que conecta emocionalmente con tu audiencia y potencia tu marca.</p>
         </article>
 
-        <article class="service-card reveal" style="transition-delay:0.25s">
+        <article class="service-card service-card-featured reveal" style="transition-delay:0.25s">
           <div class="service-icon" aria-hidden="true">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h3>Asesoría en Fondos CORFO / FOSIS</h3>
-          <p>Te guiamos en el proceso de postulación a fondos concursables y programas de financiamiento estatal para acelerar el crecimiento de tu empresa.</p>
+          <div class="service-card-featured-text">
+            <h3>Asesoría en Fondos CORFO / FOSIS</h3>
+            <p>Te guiamos en el proceso de postulación a fondos concursables y programas de financiamiento estatal para acelerar el crecimiento de tu empresa.</p>
+          </div>
+          <span class="service-card-featured-badge">Nuestro diferencial</span>
         </article>
 
       </div>
@@ -2723,8 +2900,7 @@
         <!-- SOYFWP -->
         <article class="pf-card reveal" data-category="salud" style="transition-delay:0.1s">
           <div class="pf-preview">
-            <iframe src="https://soyfwp.cl/" title="Vista previa SOYFWP" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-soyfwp.jpg" alt="Captura de pantalla del sitio web SOYFWP" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://soyfwp.cl/" data-title="SOYFWP" data-desc="Productos nutricionales y de bienestar de la línea FWP.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2745,8 +2921,7 @@
         <!-- Contabilidades Mel -->
         <article class="pf-card reveal" data-category="servicios" style="transition-delay:0.1s">
           <div class="pf-preview">
-            <iframe src="https://contabilidadesmel.cl/" title="Vista previa Contabilidades Mel" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-contabilidadesmel.jpg" alt="Captura de pantalla del sitio web Contabilidades Mel" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://contabilidadesmel.cl/" data-title="Contabilidades Mel" data-desc="Asesorías contables y tributarias para empresas y personas.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2767,8 +2942,7 @@
         <!-- Eden Riverside Retreat -->
         <article class="pf-card reveal" data-category="corporativo turismo" style="transition-delay:0.1s">
           <div class="pf-preview">
-            <iframe src="https://soyleomunoz.github.io/edenriversideretreat/" title="Vista previa Eden Riverside Retreat" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-edenriverside.jpg" alt="Captura de pantalla del sitio web Eden Riverside Retreat" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://soyleomunoz.github.io/edenriversideretreat/" data-title="Eden Riverside Retreat" data-desc="Sitio web de camping y retiro natural El Eden.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2789,8 +2963,7 @@
         <!-- Bocasugart -->
         <article class="pf-card reveal" data-category="ecommerce gastronomia" style="transition-delay:0.15s">
           <div class="pf-preview">
-            <iframe src="https://bocasugart.cl/" title="Vista previa Bocasugart" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-bocasugart.jpg" alt="Captura de pantalla del sitio web Bocasugart" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://bocasugart.cl/" data-title="Bocasugart" data-desc="Tienda online de postres artesanales.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2811,8 +2984,7 @@
         <!-- Sin Excusa Clau -->
         <article class="pf-card reveal" data-category="salud" style="transition-delay:0.1s">
           <div class="pf-preview">
-            <iframe src="https://sinexcusaclau.cl/" title="Vista previa Sin Excusa Clau" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-sinexcusaclau.jpg" alt="Captura de pantalla del sitio web Sin Excusa Clau" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://sinexcusaclau.cl/" data-title="Sin Excusa Clau" data-desc="Productos nutricionales de bienestar FWP con venta online.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2833,8 +3005,7 @@
         <!-- Kenpo Chile -->
         <article class="pf-card reveal" data-category="corporativo" style="transition-delay:0.1s">
           <div class="pf-preview">
-            <iframe src="https://www.kenpochile.cl" title="Vista previa Kenpo Chile" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-kenpochile.jpg" alt="Captura de pantalla del sitio web Kenpo Chile" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://www.kenpochile.cl" data-title="Kenpo Chile" data-desc="Sitio web oficial de artes marciales Kenpo en Chile.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2855,8 +3026,7 @@
         <!-- AR Prevención -->
         <article class="pf-card reveal" data-category="servicios" style="transition-delay:0.05s">
           <div class="pf-preview">
-            <iframe src="https://arprevencion.cl/" title="Vista previa AR Prevención" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-arprevencion.jpg" alt="Captura de pantalla del sitio web AR Prevención" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://arprevencion.cl/" data-title="AR Prevención" data-desc="Servicios de prevención de riesgos laborales.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2877,8 +3047,7 @@
         <!-- Katy Alma de Luz -->
         <article class="pf-card reveal" data-category="salud" style="transition-delay:0.1s">
           <div class="pf-preview">
-            <iframe src="https://katyalmadeluz.cl/" title="Vista previa Katy Alma de Luz" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-            <div class="pf-preview-fallback" aria-hidden="true" style="display:none;"></div>
+            <img class="pf-thumb-img" src="img/pf-katyalmadeluz.jpg" alt="Captura de pantalla del sitio web Katy Alma de Luz" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
               <button class="pf-overlay-btn primary" data-action="preview" data-url="https://katyalmadeluz.cl/" data-title="Katy Alma de Luz" data-desc="Terapias de Reiki a domicilio en Santiago.">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Vista previa
@@ -2951,48 +3120,48 @@
       </div>
       <div class="blog-grid">
 
-        <article class="blog-card reveal" style="transition-delay:0.05s">
+        <article class="blog-card reveal" style="transition-delay:0.05s" data-article="digitalizacion" tabindex="0" role="button" aria-label="Leer artículo: Cómo digitalizar tu negocio en Chile sin morir en el intento">
           <div class="blog-thumb blog-thumb-1">
-            <span class="blog-thumb-icon" aria-hidden="true">🚀</span>
+            <img src="img/blog-digitalizacion.jpg" alt="" loading="lazy" />
             <span class="blog-cat">Transformación Digital</span>
           </div>
           <div class="blog-body">
-            <p class="blog-date">15 de Marzo, 2026</p>
+            <p class="blog-date">15 de Marzo, 2026 · 6 min de lectura</p>
             <h3>Cómo digitalizar tu negocio en Chile sin morir en el intento: guía paso a paso para pymes</h3>
             <p>Digitalizar tu empresa no significa gastar una fortuna. Descubre las herramientas, estrategias y pasos concretos para llevar tu negocio al mundo digital de manera efectiva y rentable.</p>
-            <a href="#" class="blog-link" aria-label="Leer artículo sobre digitalización">
+            <a href="#" class="blog-link" data-article="digitalizacion" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
           </div>
         </article>
 
-        <article class="blog-card reveal" style="transition-delay:0.1s">
+        <article class="blog-card reveal" style="transition-delay:0.1s" data-article="fondos" tabindex="0" role="button" aria-label="Leer artículo: Guía definitiva para postular a CORFO y FOSIS en 2026">
           <div class="blog-thumb blog-thumb-2">
-            <span class="blog-thumb-icon" aria-hidden="true">💰</span>
+            <img src="img/blog-fondos.jpg" alt="" loading="lazy" />
             <span class="blog-cat">Fondos &amp; Financiamiento</span>
           </div>
           <div class="blog-body">
-            <p class="blog-date">2 de Abril, 2026</p>
+            <p class="blog-date">2 de Abril, 2026 · 7 min de lectura</p>
             <h3>Guía definitiva para postular a CORFO y FOSIS en 2026: requisitos, plazos y errores a evitar</h3>
             <p>Cientos de millones de pesos en subsidios están disponibles para emprendedores chilenos. Te enseñamos cómo identificar el fondo correcto para tu negocio y preparar una postulación ganadora.</p>
-            <a href="#" class="blog-link" aria-label="Leer artículo sobre fondos CORFO FOSIS">
+            <a href="#" class="blog-link" data-article="fondos" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
           </div>
         </article>
 
-        <article class="blog-card reveal" style="transition-delay:0.15s">
+        <article class="blog-card reveal" style="transition-delay:0.15s" data-article="marketing" tabindex="0" role="button" aria-label="Leer artículo: Marketing digital en 2026">
           <div class="blog-thumb blog-thumb-3">
-            <span class="blog-thumb-icon" aria-hidden="true">📱</span>
+            <img src="img/blog-marketing.jpg" alt="" loading="lazy" />
             <span class="blog-cat">Marketing Digital</span>
           </div>
           <div class="blog-body">
-            <p class="blog-date">18 de Abril, 2026</p>
+            <p class="blog-date">18 de Abril, 2026 · 5 min de lectura</p>
             <h3>Marketing digital en 2026: por qué tu pyme no puede seguir ignorando Instagram, TikTok y Google Ads</h3>
             <p>El comportamiento del consumidor chileno cambió radicalmente. Si tu empresa no tiene presencia activa en el ecosistema digital, está perdiendo clientes frente a competidores que sí la tienen. Esto es lo que debes hacer.</p>
-            <a href="#" class="blog-link" aria-label="Leer artículo sobre marketing digital 2026">
+            <a href="#" class="blog-link" data-article="marketing" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
@@ -3002,6 +3171,27 @@
       </div>
     </div>
   </section>
+
+  <!-- Modal de lectura de artículos -->
+  <div class="blog-modal-overlay" id="blog-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="blog-modal-title">
+    <div class="blog-modal">
+      <button class="blog-modal-close" id="blog-modal-close" aria-label="Cerrar artículo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="blog-modal-cover" id="blog-modal-cover">
+        <span class="blog-modal-cat" id="blog-modal-cat">—</span>
+      </div>
+      <div class="blog-modal-body">
+        <p class="blog-modal-date" id="blog-modal-date">—</p>
+        <h2 class="blog-modal-title" id="blog-modal-title">—</h2>
+        <div class="blog-modal-content" id="blog-modal-content"></div>
+        <a href="#contacto" class="btn btn-primary blog-modal-cta" id="blog-modal-cta">
+          Quiero implementar esto en mi negocio
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== FAQ ===================== -->
   <section id="faq" class="section" aria-labelledby="faq-title">
@@ -3384,7 +3574,7 @@
 
       <div class="footer-bottom">
         <p>© <span id="footer-year"></span> GestixPro. Todos los derechos reservados. Hecho con ❤️ en Chile.</p>
-        <p>Diseñado por <a href="#">GestixPro</a></p>
+        <p>Diseñado por <span>GestixPro</span></p>
       </div>
     </div>
   </footer>
@@ -4070,6 +4260,168 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && pfLightbox.classList.contains('open')) closeLightbox();
     });
+
+    // ─── BLOG READ MODAL ────────────────────────────────────────
+    (function () {
+      const overlay = document.getElementById('blog-modal-overlay');
+      const modal   = overlay.querySelector('.blog-modal');
+      const closeBtn = document.getElementById('blog-modal-close');
+      const coverEl = document.getElementById('blog-modal-cover');
+      const catEl   = document.getElementById('blog-modal-cat');
+      const dateEl  = document.getElementById('blog-modal-date');
+      const titleEl = document.getElementById('blog-modal-title');
+      const contentEl = document.getElementById('blog-modal-content');
+      let lastFocused = null;
+
+      const ARTICLES = {
+        digitalizacion: {
+          cover: 'img/blog-digitalizacion.jpg',
+          cat: 'Transformación Digital',
+          date: '15 de Marzo, 2026 · 6 min de lectura',
+          title: 'Cómo digitalizar tu negocio en Chile sin morir en el intento: guía paso a paso para pymes',
+          html: `
+            <p>Digitalizar una pyme suena a un proyecto caro y complejo, reservado para empresas con equipos de TI y presupuestos grandes. La realidad es distinta: hoy existen herramientas accesibles que permiten a cualquier negocio chileno —desde un taller mecánico hasta una tienda de repostería— dar el salto digital en semanas, no en años, y con una inversión que se recupera rápido.</p>
+
+            <h4>1. Empieza por diagnosticar, no por comprar software</h4>
+            <p>El error más común es partir comprando un sistema porque "lo usa la competencia". Antes de invertir, identifica en qué parte del negocio pierdes más tiempo o dinero: ¿control de inventario en papel? ¿agenda de clientes en un cuaderno? ¿ventas que solo ocurren en el local físico? Ese diagnóstico define qué digitalizar primero.</p>
+
+            <h4>2. Prioriza tu presencia en línea</h4>
+            <p>Un sitio web propio —no solo redes sociales— te da control total sobre tu marca, mejora tu credibilidad frente a clientes y bancos, y te permite aparecer en Google cuando alguien busca lo que vendes. A diferencia de una cuenta de Instagram, un sitio web no depende de algoritmos ni puede ser suspendido de un día para otro.</p>
+
+            <h4>3. Automatiza procesos repetitivos</h4>
+            <ul>
+              <li><strong>Ventas:</strong> un catálogo online o botón de WhatsApp reduce el tiempo de respuesta y evita perder clientes por demora.</li>
+              <li><strong>Administración:</strong> boletas electrónicas, control de stock y agendamiento online eliminan horas de trabajo manual cada semana.</li>
+              <li><strong>Comunicación:</strong> respuestas automáticas y flujos de seguimiento mantienen a tus clientes informados sin que tengas que estar pendiente todo el día.</li>
+            </ul>
+
+            <h4>4. Mide antes de escalar</h4>
+            <p>No necesitas digitalizarlo todo de una vez. Implementa una mejora, mide su impacto durante 4 a 6 semanas y luego decide el siguiente paso. Este enfoque incremental reduce el riesgo financiero y te permite aprender qué canales realmente traen clientes a tu negocio.</p>
+
+            <h4>5. Busca financiamiento antes de pagar todo de tu bolsillo</h4>
+            <p>En Chile existen fondos públicos como CORFO y FOSIS pensados exactamente para financiar la digitalización de pymes. Antes de asumir el costo completo, revisa si tu proyecto califica para un subsidio —puede cubrir gran parte de la inversión inicial.</p>
+
+            <p>En GestixPro acompañamos a emprendedores chilenos en cada una de estas etapas: desde el diagnóstico inicial hasta el desarrollo del sitio web, la automatización de procesos y la postulación a fondos de financiamiento.</p>
+          `
+        },
+        fondos: {
+          cover: 'img/blog-fondos.jpg',
+          cat: 'Fondos & Financiamiento',
+          date: '2 de Abril, 2026 · 7 min de lectura',
+          title: 'Guía definitiva para postular a CORFO y FOSIS en 2026: requisitos, plazos y errores a evitar',
+          html: `
+            <p>Cada año, CORFO y FOSIS destinan cientos de millones de pesos en subsidios no reembolsables para emprendedores y pymes chilenas. Sin embargo, la mayoría de las postulaciones se rechaza por errores evitables en la formulación del proyecto, no por falta de mérito del negocio. Esta guía resume lo esencial para presentar una postulación competitiva en 2026.</p>
+
+            <h4>¿Cuál es la diferencia entre CORFO y FOSIS?</h4>
+            <p>CORFO está orientado a proyectos de crecimiento, innovación y competitividad empresarial, con montos que pueden llegar a decenas de millones de pesos según la línea. FOSIS, en cambio, apunta a emprendimientos de menor escala y personas en situación de vulnerabilidad socioeconómica, con montos más acotados pero requisitos de acceso más flexibles. Elegir el fondo correcto según el tamaño y etapa de tu negocio es el primer filtro para no perder tiempo.</p>
+
+            <h4>Requisitos generales que no puedes pasar por alto</h4>
+            <ul>
+              <li>Iniciación de actividades vigente ante el SII (o compromiso de formalización en algunas líneas).</li>
+              <li>Formulario de postulación completo, con objetivos, actividades y presupuesto coherentes entre sí.</li>
+              <li>Cotizaciones o respaldos que sustenten los montos solicitados.</li>
+              <li>Declaración de no tener deudas previsionales ni incumplimientos con otros fondos públicos.</li>
+            </ul>
+
+            <h4>Los errores más comunes que rechazan postulaciones</h4>
+            <ul>
+              <li><strong>Objetivos ambiguos:</strong> proyectos que no explican con claridad qué problema resuelven ni cómo se medirá el éxito.</li>
+              <li><strong>Presupuestos inflados o mal justificados:</strong> montos sin cotizaciones de respaldo o desproporcionados frente a la actividad.</li>
+              <li><strong>Postular fuera de plazo o a la línea incorrecta:</strong> cada convocatoria tiene ventanas de tiempo acotadas y bases específicas.</li>
+              <li><strong>No incluir un plan de digitalización o marketing:</strong> en 2026, los evaluadores valoran positivamente proyectos con un componente digital claro.</li>
+            </ul>
+
+            <h4>Cómo preparar una postulación ganadora</h4>
+            <p>Los proyectos mejor evaluados cuentan una historia coherente: el problema del negocio, la solución concreta que se financiará, el impacto esperado en ventas o eficiencia, y un cronograma realista. Acompañar la postulación con cotizaciones formales, un plan de trabajo detallado y —cuando corresponde— una estrategia digital, aumenta significativamente las probabilidades de aprobación.</p>
+
+            <p>En GestixPro asesoramos a emprendedores en la identificación del fondo correcto, la formulación del proyecto y la preparación de todos los respaldos necesarios para postular con las mejores probabilidades de éxito.</p>
+          `
+        },
+        marketing: {
+          cover: 'img/blog-marketing.jpg',
+          cat: 'Marketing Digital',
+          date: '18 de Abril, 2026 · 5 min de lectura',
+          title: 'Marketing digital en 2026: por qué tu pyme no puede seguir ignorando Instagram, TikTok y Google Ads',
+          html: `
+            <p>El consumidor chileno de 2026 investiga, compara y decide antes de pisar una tienda física —y muchas veces nunca lo hace, porque compra directo desde el celular. Si tu pyme no tiene presencia activa y bien gestionada en el ecosistema digital, no es que "no esté creciendo": está perdiendo clientes frente a competidores que sí invirtieron en marketing digital.</p>
+
+            <h4>Instagram y TikTok ya no son opcionales</h4>
+            <p>Estas plataformas dejaron de ser solo espacios de entretenimiento para convertirse en motores de descubrimiento de marcas y productos. Un contenido bien pensado —no necesariamente costoso de producir— puede generar más ventas que una campaña publicitaria tradicional, porque construye confianza antes de que el cliente compre.</p>
+
+            <h4>Google Ads: estar presente cuando te buscan</h4>
+            <p>Cuando alguien busca en Google el servicio o producto que tu empresa ofrece, quien aparece primero se lleva la mayoría de los clics. Google Ads permite posicionarte de forma inmediata frente a personas que ya tienen intención de compra, algo que el marketing orgánico tarda meses en lograr.</p>
+
+            <h4>Los tres pilares de una estrategia digital efectiva en 2026</h4>
+            <ul>
+              <li><strong>Presencia consistente:</strong> perfiles activos, actualizados y con una identidad visual coherente en cada plataforma.</li>
+              <li><strong>Contenido con propósito:</strong> publicaciones que informan, entretienen o resuelven dudas reales de tus clientes, no solo que promocionan.</li>
+              <li><strong>Publicidad medible:</strong> campañas pagadas con objetivos claros y métricas que permiten ajustar la inversión según resultados reales.</li>
+            </ul>
+
+            <h4>El costo real de no hacer nada</h4>
+            <p>Muchas pymes postergan el marketing digital pensando que "no es prioridad ahora". El problema es que mientras se posterga, la competencia captura la atención y la confianza de los mismos clientes que tu negocio podría estar atendiendo. Empezar de forma ordenada y con objetivos claros —aunque sea con un presupuesto acotado— genera resultados medibles en pocas semanas.</p>
+
+            <p>En GestixPro diseñamos estrategias de marketing digital a la medida de pymes chilenas: contenido, publicidad en redes y Google Ads, y seguimiento de resultados para que cada peso invertido se traduzca en clientes reales.</p>
+          `
+        }
+      };
+
+      function getFocusable() {
+        return Array.from(modal.querySelectorAll('button, a[href]')).filter(el => !el.disabled);
+      }
+
+      function onKeydown(e) {
+        if (e.key === 'Escape') { closeBlogModal(); return; }
+        if (e.key === 'Tab') {
+          const focusable = getFocusable();
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last  = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault(); last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+          }
+        }
+      }
+
+      function openBlogModal(key) {
+        const data = ARTICLES[key];
+        if (!data) return;
+        coverEl.style.backgroundImage = `url('${data.cover}')`;
+        catEl.textContent = data.cat;
+        dateEl.textContent = data.date;
+        titleEl.textContent = data.title;
+        contentEl.innerHTML = data.html;
+        modal.scrollTop = 0;
+
+        lastFocused = document.activeElement;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+        document.addEventListener('keydown', onKeydown);
+      }
+
+      function closeBlogModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKeydown);
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+
+      document.querySelectorAll('.blog-card[data-article]').forEach(card => {
+        card.addEventListener('click', () => openBlogModal(card.dataset.article));
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openBlogModal(card.dataset.article);
+          }
+        });
+      });
+
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeBlogModal(); });
+      closeBtn.addEventListener('click', closeBlogModal);
+    })();
 
     // ─── REFERRAL PROMO MODAL ──────────────────────────────────
     (function () {
