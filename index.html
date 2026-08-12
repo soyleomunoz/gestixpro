@@ -596,7 +596,7 @@
       display: block;
       width: 26px;
       height: 2px;
-      background: var(--white);
+      background: var(--cyan);
       border-radius: 2px;
       transition: var(--transition);
     }
@@ -3915,6 +3915,15 @@
         navLinks.classList.remove('open');
         hamburger.setAttribute('aria-expanded', false);
       });
+    });
+
+    document.addEventListener('click', (e) => {
+      const isOpen = navLinks.classList.contains('open');
+      if (!isOpen) return;
+      if (navLinks.contains(e.target) || hamburger.contains(e.target)) return;
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
     });
 
     // ─── SCROLL TOP ────────────────────────────────────────
