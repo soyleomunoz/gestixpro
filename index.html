@@ -4261,7 +4261,6 @@
         if (pfCurrentPage > 0) {
           pfCurrentPage--;
           renderPortfolio();
-          document.getElementById('portafolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
 
@@ -4270,7 +4269,6 @@
         if (pfCurrentPage < totalPages - 1) {
           pfCurrentPage++;
           renderPortfolio();
-          document.getElementById('portafolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     }
