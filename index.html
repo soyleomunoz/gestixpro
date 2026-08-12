@@ -771,18 +771,23 @@
       .hero-stats { gap: 22px; }
     }
 
-    #hero-container {
+    .hero-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      gap: 32px;
+      align-items: end;
     }
 
     @media (max-width: 960px) {
-      #hero-container {
+      .hero-inner {
         grid-template-columns: 1fr;
       }
       .hero-dashboard { display: none; }
+      .hero-content { width: 100%; }
+      .hero-stats {
+        justify-content: center;
+        text-align: center;
+      }
     }
 
     /* ============================================================
@@ -2401,7 +2406,7 @@
     <div class="hero-grid"></div>
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
-    <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:end;">
+    <div class="container hero-inner">
 
       <div class="hero-content">
         <div class="hero-badge">
