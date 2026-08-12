@@ -4164,7 +4164,7 @@
 
       nav.style.display = 'flex';
       nav.innerHTML = `
-        <button id="pf-prev" aria-label="Proyectos anteriores" style="
+        <button type="button" id="pf-prev" aria-label="Proyectos anteriores" style="
           width:46px; height:46px; border-radius:50%;
           background:rgba(255,255,255,0.05);
           border:1px solid rgba(255,255,255,0.07);
@@ -4178,7 +4178,7 @@
 
         <div style="display:flex; gap:8px; align-items:center;" id="pf-dots"></div>
 
-        <button id="pf-next" aria-label="Proyectos siguientes" style="
+        <button type="button" id="pf-next" aria-label="Proyectos siguientes" style="
           width:46px; height:46px; border-radius:50%;
           background:rgba(255,255,255,0.05);
           border:1px solid rgba(255,255,255,0.07);
@@ -4191,17 +4191,27 @@
         </button>
       `;
 
-      // Dots
+      // Números de página
       const dotsContainer = document.getElementById('pf-dots');
       for (let i = 0; i < totalPages; i++) {
-        const dot = document.createElement('span');
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.textContent = i + 1;
+        dot.setAttribute('aria-label', `Ir a la página ${i + 1}`);
+        const active = i === pfCurrentPage;
         dot.style.cssText = `
-          display: inline-block;
-          width: ${i === pfCurrentPage ? '24px' : '8px'};
-          height: 8px;
-          border-radius: ${i === pfCurrentPage ? '4px' : '50%'};
-          background: ${i === pfCurrentPage ? '#00c2e0' : '#7a8eab'};
+          width: 30px; height: 30px;
+          border-radius: 8px;
+          background: ${active ? '#00c2e0' : 'rgba(255,255,255,0.05)'};
+          border: 1px solid ${active ? '#00c2e0' : 'rgba(255,255,255,0.07)'};
+          color: ${active ? '#04141f' : '#7a8eab'};
+          font-family: var(--font-h);
+          font-size: 0.8rem;
+          font-weight: 700;
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           transition: all 0.3s ease;
         `;
         dot.addEventListener('click', () => {
@@ -4257,8 +4267,14 @@
       });
     });
 
-    // Recalcular al cambiar tamaño de pantalla
+    // Recalcular solo si el ancho cruza el breakpoint móvil
+    // (evita resetear la página por el resize que dispara el navegador
+    // móvil al ocultar/mostrar la barra de direcciones durante el scroll)
+    let pfLastPerPage = itemsPerPage();
     window.addEventListener('resize', () => {
+      const perPage = itemsPerPage();
+      if (perPage === pfLastPerPage) return;
+      pfLastPerPage = perPage;
       pfCurrentPage = 0;
       renderPortfolio();
     });
