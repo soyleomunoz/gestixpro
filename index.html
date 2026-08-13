@@ -1827,9 +1827,9 @@
     .pf-filter {
       padding: 9px 22px;
       border-radius: 50px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
+      border: 1px solid rgba(30,111,255,0.45);
+      background: rgba(30,111,255,0.14);
+      color: #eaf2ff;
       font-family: var(--font-h);
       font-size: 0.8rem;
       font-weight: 600;
@@ -1838,14 +1838,50 @@
       transition: var(--transition);
     }
     .pf-filter:hover {
-      border-color: rgba(30,111,255,0.4);
-      color: var(--ice);
+      border-color: rgba(30,111,255,0.8);
+      background: rgba(30,111,255,0.24);
+      color: #fff;
     }
     .pf-filter.active {
       background: linear-gradient(135deg, var(--blue), var(--bright));
       border-color: transparent;
       color: #fff;
       box-shadow: 0 6px 20px rgba(10,75,218,0.35);
+    }
+    .portfolio-subfilters {
+      display: none;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    .portfolio-subfilters.active {
+      display: flex;
+    }
+    .pf-subfilter {
+      padding: 6px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(0,194,224,0.45);
+      background: rgba(0,194,224,0.12);
+      color: #7de9ff;
+      font-family: var(--font-h);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .pf-subfilter:hover {
+      border-color: rgba(0,194,224,0.8);
+      background: rgba(0,194,224,0.22);
+      color: #fff;
+    }
+    .pf-subfilter.active {
+      background: var(--cyan);
+      border-color: transparent;
+      color: var(--navy);
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(0,194,224,0.35);
     }
     .portfolio-grid {
       display: grid;
@@ -1934,6 +1970,7 @@
     .pf-tags {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-start;
       gap: 7px;
       margin-bottom: 12px;
     }
@@ -1944,9 +1981,37 @@
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      background: rgba(10,75,218,0.18);
-      border: 1px solid rgba(30,111,255,0.22);
-      color: var(--ice);
+      background: rgba(0,194,224,0.14);
+      border: 1px solid rgba(0,194,224,0.5);
+      color: #7de9ff;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .pf-tag:hover {
+      border-color: rgba(0,194,224,0.85);
+      background: rgba(0,194,224,0.24);
+      color: #fff;
+    }
+    .pf-tag.pf-tag-main {
+      background: rgba(30,111,255,0.16);
+      border: 1px solid rgba(30,111,255,0.55);
+      color: #eaf2ff;
+    }
+    .pf-tag.pf-tag-main:hover {
+      border-color: rgba(30,111,255,0.85);
+      background: rgba(30,111,255,0.26);
+      color: #fff;
+    }
+    .pf-tag.pf-tag-selected {
+      background: var(--cyan);
+      border-color: transparent;
+      color: var(--navy);
+    }
+    .pf-tag.pf-tag-main.pf-tag-selected {
+      background: linear-gradient(135deg, var(--blue), var(--bright));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(10,75,218,0.35);
     }
     .pf-body h3 {
       font-family: var(--font-h);
@@ -2933,17 +2998,17 @@
       </div>
       <div class="portfolio-filters reveal" style="transition-delay:0.05s" role="group" aria-label="Filtrar proyectos por categoría">
         <button class="pf-filter active" data-filter="all">Todos</button>
-        <button class="pf-filter" data-filter="ecommerce">E-Commerce</button>
         <button class="pf-filter" data-filter="corporativo">Corporativo</button>
+        <button class="pf-filter" data-filter="gastronomia">Gastronomía</button>
         <button class="pf-filter" data-filter="salud">Salud &amp; Bienestar</button>
         <button class="pf-filter" data-filter="servicios">Servicios</button>
         <button class="pf-filter" data-filter="turismo">Turismo</button>
-        <button class="pf-filter" data-filter="gastronomia">Gastronomía</button>
       </div>
+      <div class="portfolio-subfilters" id="portfolio-subfilters" role="group" aria-label="Filtrar por subcategoría"></div>
       <div class="portfolio-grid" id="portfolio-grid">
 
         <!-- SOYFWP -->
-        <article class="pf-card reveal" data-category="salud" style="transition-delay:0.1s">
+        <article class="pf-card reveal" data-category="salud" data-subtags="fwp" style="transition-delay:0.1s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-soyfwp.jpg" alt="Captura de pantalla del sitio web SOYFWP" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -2956,7 +3021,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Nutrición</span><span class="pf-tag">Bienestar</span><span class="pf-tag">FWP</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="salud">Salud &amp; Bienestar</span><span class="pf-tag" data-subfilter="fwp">FWP</span></div>
             <h3>SOYFWP</h3>
             <p>Sitio de productos nutricionales y de bienestar de la línea FWP. Diseño motivacional enfocado en hábitos saludables y bienestar integral.</p>
             <a href="https://soyfwp.cl/" target="_blank" rel="noopener noreferrer" class="pf-link">www.soyfwp.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -2964,7 +3029,7 @@
         </article>
 
         <!-- Contabilidades Mel -->
-        <article class="pf-card reveal" data-category="servicios" style="transition-delay:0.1s">
+        <article class="pf-card reveal" data-category="servicios" data-subtags="contabilidad" style="transition-delay:0.1s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-contabilidadesmel.jpg" alt="Captura de pantalla del sitio web Contabilidades Mel" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -2977,7 +3042,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Servicios</span><span class="pf-tag">Contabilidad</span><span class="pf-tag">Tributario</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="servicios">Servicios</span><span class="pf-tag" data-subfilter="contabilidad">Contabilidad</span></div>
             <h3>Contabilidades Mel</h3>
             <p>Sitio corporativo para estudio de asesorías contables y tributarias. Servicios, valores, equipo y contacto directo con contadora.</p>
             <a href="https://contabilidadesmel.cl/" target="_blank" rel="noopener noreferrer" class="pf-link">contabilidadesmel.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -2985,7 +3050,7 @@
         </article>
 
         <!-- Eden Riverside Retreat -->
-        <article class="pf-card reveal" data-category="corporativo turismo" style="transition-delay:0.1s">
+        <article class="pf-card reveal" data-category="turismo" data-subtags="camping" style="transition-delay:0.1s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-edenriverside.jpg" alt="Captura de pantalla del sitio web Eden Riverside Retreat" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -2998,7 +3063,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Turismo</span><span class="pf-tag">Camping</span><span class="pf-tag">Naturaleza</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="turismo">Turismo</span><span class="pf-tag" data-subfilter="camping">Camping</span></div>
             <h3>Eden Riverside Retreat</h3>
             <p>Sitio web para camping y retiro natural El Eden. Información de cabañas, actividades al aire libre, reservas y contacto directo con los anfitriones.</p>
             <a href="https://soyleomunoz.github.io/edenriversideretreat/" target="_blank" rel="noopener noreferrer" class="pf-link">www.edenriversideretreat.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -3006,7 +3071,7 @@
         </article>
 
         <!-- Bocasugart -->
-        <article class="pf-card reveal" data-category="ecommerce gastronomia" style="transition-delay:0.15s">
+        <article class="pf-card reveal" data-category="gastronomia" data-subtags="postres" style="transition-delay:0.15s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-bocasugart.jpg" alt="Captura de pantalla del sitio web Bocasugart" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -3019,7 +3084,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Gastronomía</span><span class="pf-tag">Postres</span><span class="pf-tag">E-Commerce</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="gastronomia">Gastronomía</span><span class="pf-tag" data-subfilter="postres">Postres</span></div>
             <h3>Bocasugart</h3>
             <p>Tienda online de postres artesanales. Catálogo de productos dulces, pedidos personalizados y contacto directo con la repostera.</p>
             <a href="https://bocasugart.cl/" target="_blank" rel="noopener noreferrer" class="pf-link">www.bocasugart.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -3027,7 +3092,7 @@
         </article>
 
         <!-- Sin Excusa Clau -->
-        <article class="pf-card reveal" data-category="salud" style="transition-delay:0.1s">
+        <article class="pf-card reveal" data-category="salud" data-subtags="fwp" style="transition-delay:0.1s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-sinexcusaclau.jpg" alt="Captura de pantalla del sitio web Sin Excusa Clau" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -3040,7 +3105,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Nutrición</span><span class="pf-tag">Bienestar</span><span class="pf-tag">FWP</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="salud">Salud &amp; Bienestar</span><span class="pf-tag" data-subfilter="fwp">FWP</span></div>
             <h3>Sin Excusa Clau</h3>
             <p>Sitio de productos nutricionales y de bienestar de la línea FWP. Diseño motivacional orientado a la conversión.</p>
             <a href="https://sinexcusaclau.cl/" target="_blank" rel="noopener noreferrer" class="pf-link">www.sinexcusaclau.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -3048,7 +3113,7 @@
         </article>
 
         <!-- Kenpo Chile -->
-        <article class="pf-card reveal" data-category="corporativo" style="transition-delay:0.1s">
+        <article class="pf-card reveal" data-category="corporativo" data-subtags="artes-marciales" style="transition-delay:0.1s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-kenpochile.jpg" alt="Captura de pantalla del sitio web Kenpo Chile" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -3061,7 +3126,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Corporativo</span><span class="pf-tag">Deportes</span><span class="pf-tag">Artes Marciales</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="corporativo">Corporativo</span><span class="pf-tag" data-subfilter="artes-marciales">Artes Marciales</span></div>
             <h3>Kenpo Chile</h3>
             <p>Sitio dinámico para academia de artes marciales Kenpo. Clases, instructores, galería y formulario de inscripción.</p>
             <a href="https://www.kenpochile.cl" target="_blank" rel="noopener noreferrer" class="pf-link">kenpochile.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -3069,7 +3134,7 @@
         </article>
 
         <!-- AR Prevención -->
-        <article class="pf-card reveal" data-category="servicios" style="transition-delay:0.05s">
+        <article class="pf-card reveal" data-category="servicios" data-subtags="prevencion" style="transition-delay:0.05s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-arprevencion.jpg" alt="Captura de pantalla del sitio web AR Prevención" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -3082,7 +3147,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Servicios</span><span class="pf-tag">Prevención</span><span class="pf-tag">Laboral</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="servicios">Servicios</span><span class="pf-tag" data-subfilter="prevencion">Prevención</span></div>
             <h3>AR Prevención</h3>
             <p>Web profesional para prevencionista de riesgos independiente. Servicios, normativa, formulario de contacto y perfil de credenciales.</p>
             <a href="https://arprevencion.cl/" target="_blank" rel="noopener noreferrer" class="pf-link">www.arprevencion.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -3090,7 +3155,7 @@
         </article>
 
         <!-- Katy Alma de Luz -->
-        <article class="pf-card reveal" data-category="salud" style="transition-delay:0.1s">
+        <article class="pf-card reveal" data-category="salud" data-subtags="reiki" style="transition-delay:0.1s">
           <div class="pf-preview">
             <img class="pf-thumb-img" src="img/pf-katyalmadeluz.jpg" alt="Captura de pantalla del sitio web Katy Alma de Luz" loading="lazy" />
             <div class="pf-overlay" aria-hidden="true">
@@ -3103,7 +3168,7 @@
             </div>
           </div>
           <div class="pf-body">
-            <div class="pf-tags"><span class="pf-tag">Salud &amp; Bienestar</span><span class="pf-tag">Reiki</span><span class="pf-tag">Terapias</span></div>
+            <div class="pf-tags"><span class="pf-tag pf-tag-main" data-filter="salud">Salud &amp; Bienestar</span><span class="pf-tag" data-subfilter="reiki">Reiki</span></div>
             <h3>Katy Alma de Luz</h3>
             <p>Sitio para terapeuta de Reiki a domicilio en Santiago. Presenta servicios, planes de sesiones, cobertura y reserva por WhatsApp.</p>
             <a href="https://katyalmadeluz.cl/" target="_blank" rel="noopener noreferrer" class="pf-link">www.katyalmadeluz.cl <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg></a>
@@ -4114,6 +4179,16 @@
 
     let pfCurrentPage = 0;
     let pfCurrentFilter = 'all';
+    let pfCurrentSubfilter = null;
+
+    const PF_SUBTAG_LABELS = {
+      nutricion: 'Nutrición', bienestar: 'Bienestar', fwp: 'FWP',
+      contabilidad: 'Contabilidad', tributario: 'Tributario',
+      camping: 'Camping', naturaleza: 'Naturaleza', postres: 'Postres',
+      deportes: 'Deportes', 'artes-marciales': 'Artes Marciales',
+      prevencion: 'Prevención', laboral: 'Laboral',
+      reiki: 'Reiki', terapias: 'Terapias'
+    };
 
     function isMobile() { return window.innerWidth <= 640; }
     function itemsPerPage() { return isMobile() ? ITEMS_MOBILE : ITEMS_DESKTOP; }
@@ -4137,8 +4212,93 @@
 
     function getFilteredCards() {
       return [...document.querySelectorAll('.pf-card')].filter(card => {
-        const cats = card.dataset.category || '';
-        return pfCurrentFilter === 'all' || cats.includes(pfCurrentFilter);
+        const cats = (card.dataset.category || '').split(' ');
+        const subtags = (card.dataset.subtags || '').split(' ');
+        if (pfCurrentFilter !== 'all' && !cats.includes(pfCurrentFilter)) return false;
+        if (pfCurrentSubfilter && !subtags.includes(pfCurrentSubfilter)) return false;
+        return true;
+      });
+    }
+
+    function renderSubfilters(filter) {
+      const container = document.getElementById('portfolio-subfilters');
+      container.innerHTML = '';
+      pfCurrentSubfilter = null;
+
+      if (filter === 'all') {
+        container.classList.remove('active');
+        return;
+      }
+
+      const slugs = new Set();
+      document.querySelectorAll('.pf-card').forEach(card => {
+        const cats = (card.dataset.category || '').split(' ');
+        if (!cats.includes(filter)) return;
+        (card.dataset.subtags || '').split(' ').filter(Boolean).forEach(s => slugs.add(s));
+      });
+
+      if (slugs.size === 0) {
+        container.classList.remove('active');
+        return;
+      }
+
+      const sorted = [...slugs].sort((a, b) =>
+        (PF_SUBTAG_LABELS[a] || a).localeCompare((PF_SUBTAG_LABELS[b] || b), 'es')
+      );
+
+      sorted.forEach(slug => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'pf-subfilter';
+        btn.dataset.subfilter = slug;
+        btn.textContent = PF_SUBTAG_LABELS[slug] || slug;
+        btn.addEventListener('click', () => {
+          const isActive = btn.classList.contains('active');
+          container.querySelectorAll('.pf-subfilter').forEach(b => b.classList.remove('active'));
+          pfCurrentSubfilter = isActive ? null : slug;
+          if (!isActive) btn.classList.add('active');
+          pfCurrentPage = 0;
+          renderPortfolio();
+        });
+        container.appendChild(btn);
+      });
+
+      if (sorted.length === 1) {
+        pfCurrentSubfilter = sorted[0];
+        container.querySelector('.pf-subfilter').classList.add('active');
+      }
+
+      container.classList.add('active');
+    }
+
+    function getCategorySubtagCounts() {
+      const map = {};
+      document.querySelectorAll('.pf-card').forEach(card => {
+        const cats = (card.dataset.category || '').split(' ');
+        const subs = (card.dataset.subtags || '').split(' ').filter(Boolean);
+        cats.forEach(cat => {
+          if (!map[cat]) map[cat] = new Set();
+          subs.forEach(s => map[cat].add(s));
+        });
+      });
+      return map;
+    }
+
+    function updateTagHighlights() {
+      const catSubCounts = getCategorySubtagCounts();
+
+      document.querySelectorAll('.pf-tag[data-filter]').forEach(tag => {
+        const cat = tag.dataset.filter;
+        const onlySubtag = pfCurrentFilter !== 'all' && catSubCounts[cat] && catSubCounts[cat].size === 1;
+        const isActive = pfCurrentFilter !== 'all' && cat === pfCurrentFilter;
+        tag.classList.toggle('pf-tag-selected', onlySubtag || isActive);
+      });
+
+      document.querySelectorAll('.pf-tag[data-subfilter]').forEach(tag => {
+        const cat = tag.closest('.pf-card').dataset.category.split(' ')[0];
+        const onlySubtag = pfCurrentFilter !== 'all' && catSubCounts[cat] && catSubCounts[cat].size === 1;
+        const isActive = !!pfCurrentSubfilter && tag.dataset.subfilter === pfCurrentSubfilter;
+        tag.classList.toggle('pf-tag-selected', onlySubtag || isActive);
       });
     }
 
@@ -4148,6 +4308,8 @@
       const totalPages = Math.ceil(cards.length / perPage);
       const start     = pfCurrentPage * perPage;
       const end       = start + perPage;
+
+      updateTagHighlights();
 
       // Ocultar todas las cards
       document.querySelectorAll('.pf-card').forEach(c => c.classList.add('hidden'));
@@ -4280,10 +4442,37 @@
         btn.classList.add('active');
         pfCurrentFilter = btn.dataset.filter;
         pfCurrentPage   = 0;
+        renderSubfilters(pfCurrentFilter);
         if (pfCurrentFilter === 'all') shufflePortfolioGrid();
         else restorePortfolioOrder();
         renderPortfolio();
       });
+    });
+
+    // Click en etiquetas dentro de las tarjetas: filtran la grilla
+    document.getElementById('portfolio-grid').addEventListener('click', e => {
+      const tag = e.target.closest('.pf-tag');
+      if (!tag) return;
+      e.stopPropagation();
+
+      const mainSlug = tag.dataset.filter || tag.closest('.pf-card').dataset.category.split(' ')[0];
+      const subSlug  = tag.dataset.subfilter || null;
+
+      document.querySelectorAll('.pf-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === mainSlug));
+      pfCurrentFilter = mainSlug;
+      pfCurrentPage   = 0;
+      renderSubfilters(mainSlug);
+
+      if (subSlug) {
+        const subBtn = document.querySelector(`.pf-subfilter[data-subfilter="${subSlug}"]`);
+        if (subBtn) {
+          subBtn.classList.add('active');
+          pfCurrentSubfilter = subSlug;
+        }
+      }
+
+      restorePortfolioOrder();
+      renderPortfolio();
     });
 
     // Recalcular solo si el ancho cruza el breakpoint móvil
