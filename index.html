@@ -1253,6 +1253,8 @@
       border-radius: var(--radius);
       overflow: hidden;
       transition: var(--transition);
+      display: flex;
+      flex-direction: column;
     }
     .blog-card:hover {
       transform: translateY(-6px);
@@ -1270,6 +1272,7 @@
     .blog-thumb-1 { background: linear-gradient(135deg, #0a3080, #1e6fff55); }
     .blog-thumb-2 { background: linear-gradient(135deg, #00484d, #00c2e055); }
     .blog-thumb-3 { background: linear-gradient(135deg, #1e2a5e, #7c3aed55); }
+    .blog-thumb-4 { background: linear-gradient(135deg, #0a1f4d, #00c2e055); }
     .blog-thumb img {
       position: absolute;
       inset: 0;
@@ -1302,7 +1305,12 @@
       border: 1px solid rgba(255,255,255,0.12);
       z-index: 1;
     }
-    .blog-body { padding: 28px; }
+    .blog-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
     .blog-date { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; }
     .blog-body h3 {
       font-family: var(--font-h);
@@ -1316,7 +1324,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 18px;
+      margin-top: auto;
+      padding-top: 18px;
       font-size: 0.84rem;
       font-weight: 600;
       color: var(--cyan);
@@ -1726,6 +1735,8 @@
     }
     .footer-bottom p { font-size: 0.82rem; color: var(--muted); }
     .footer-bottom a { color: var(--cyan); }
+    .footer-credit { display: flex; align-items: center; gap: 4px; }
+    .footer-logo-svg { height: 0.82rem; width: auto; }
 
     @media (max-width: 900px) {
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
@@ -1907,6 +1918,16 @@
       box-shadow: 0 30px 70px rgba(10,75,218,0.22);
     }
     .pf-card.hidden {
+      display: none;
+    }
+    .blog-card.hidden {
+      display: none;
+    }
+    .blog-placeholder {
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .blog-placeholder.hidden {
       display: none;
     }
     .pf-preview {
@@ -3228,25 +3249,43 @@
         <h2 class="section-title" id="blog-title">Aprende y <span>crece</span> con nosotros</h2>
         <p class="section-sub">Recursos prácticos para emprendedores y pymes que quieren avanzar en el mundo digital.</p>
       </div>
-      <div class="blog-grid">
+      <div class="blog-grid" id="blog-grid">
 
-        <article class="blog-card reveal" style="transition-delay:0.05s" data-article="digitalizacion" tabindex="0" role="button" aria-label="Leer artículo: Cómo digitalizar tu negocio en Chile sin morir en el intento">
-          <div class="blog-thumb blog-thumb-1">
-            <img src="img/blog-digitalizacion.jpg" alt="" loading="lazy" />
-            <span class="blog-cat">Transformación Digital</span>
+        <!-- Los artículos más nuevos se agregan PRIMERO (arriba) para que aparezcan en la página 1 -->
+
+        <article class="blog-card reveal" style="transition-delay:0.05s" data-article="agentes-ia" tabindex="0" role="button" aria-label="Leer artículo: Agentes de IA, el nuevo empleado digital de emprendimientos y empresas">
+          <div class="blog-thumb blog-thumb-4">
+            <img src="img/blog-agentes-ia.svg" alt="" loading="lazy" />
+            <span class="blog-cat">Inteligencia Artificial</span>
           </div>
           <div class="blog-body">
-            <p class="blog-date">15 de Marzo, 2026 · 6 min de lectura</p>
-            <h3>Cómo digitalizar tu negocio en Chile sin morir en el intento: guía paso a paso para pymes</h3>
-            <p>Digitalizar tu empresa no significa gastar una fortuna. Descubre las herramientas, estrategias y pasos concretos para llevar tu negocio al mundo digital de manera efectiva y rentable.</p>
-            <a href="#" class="blog-link" data-article="digitalizacion" aria-hidden="true" tabindex="-1">
+            <p class="blog-date">6 de Mayo, 2026 · 8 min de lectura</p>
+            <h3>Agentes de IA: el nuevo empleado digital que todo emprendimiento y empresa chilena necesita en 2026</h3>
+            <p>Desde un agente de WhatsApp que atiende y vende 24/7 hasta sistemas que automatizan procesos completos en grandes empresas: así están usando la inteligencia artificial los negocios que hoy le sacan ventaja a su competencia.</p>
+            <a href="#" class="blog-link" data-article="agentes-ia" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
           </div>
         </article>
 
-        <article class="blog-card reveal" style="transition-delay:0.1s" data-article="fondos" tabindex="0" role="button" aria-label="Leer artículo: Guía definitiva para postular a CORFO y FOSIS en 2026">
+        <article class="blog-card reveal" style="transition-delay:0.1s" data-article="marketing" tabindex="0" role="button" aria-label="Leer artículo: Marketing digital en 2026">
+          <div class="blog-thumb blog-thumb-3">
+            <img src="img/blog-marketing.jpg" alt="" loading="lazy" />
+            <span class="blog-cat">Marketing Digital</span>
+          </div>
+          <div class="blog-body">
+            <p class="blog-date">18 de Abril, 2026 · 5 min de lectura</p>
+            <h3>Marketing digital en 2026: por qué tu pyme no puede seguir ignorando Instagram, TikTok y Google Ads</h3>
+            <p>El comportamiento del consumidor chileno cambió radicalmente. Si tu empresa no tiene presencia activa en el ecosistema digital, está perdiendo clientes frente a competidores que sí la tienen. Esto es lo que debes hacer.</p>
+            <a href="#" class="blog-link" data-article="marketing" aria-hidden="true" tabindex="-1">
+              Leer artículo
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="blog-card reveal" style="transition-delay:0.15s" data-article="fondos" tabindex="0" role="button" aria-label="Leer artículo: Guía definitiva para postular a CORFO y FOSIS en 2026">
           <div class="blog-thumb blog-thumb-2">
             <img src="img/blog-fondos.jpg" alt="" loading="lazy" />
             <span class="blog-cat">Fondos &amp; Financiamiento</span>
@@ -3262,16 +3301,16 @@
           </div>
         </article>
 
-        <article class="blog-card reveal" style="transition-delay:0.15s" data-article="marketing" tabindex="0" role="button" aria-label="Leer artículo: Marketing digital en 2026">
-          <div class="blog-thumb blog-thumb-3">
-            <img src="img/blog-marketing.jpg" alt="" loading="lazy" />
-            <span class="blog-cat">Marketing Digital</span>
+        <article class="blog-card reveal" style="transition-delay:0.2s" data-article="digitalizacion" tabindex="0" role="button" aria-label="Leer artículo: Cómo digitalizar tu negocio en Chile sin morir en el intento">
+          <div class="blog-thumb blog-thumb-1">
+            <img src="img/blog-digitalizacion.jpg" alt="" loading="lazy" />
+            <span class="blog-cat">Transformación Digital</span>
           </div>
           <div class="blog-body">
-            <p class="blog-date">18 de Abril, 2026 · 5 min de lectura</p>
-            <h3>Marketing digital en 2026: por qué tu pyme no puede seguir ignorando Instagram, TikTok y Google Ads</h3>
-            <p>El comportamiento del consumidor chileno cambió radicalmente. Si tu empresa no tiene presencia activa en el ecosistema digital, está perdiendo clientes frente a competidores que sí la tienen. Esto es lo que debes hacer.</p>
-            <a href="#" class="blog-link" data-article="marketing" aria-hidden="true" tabindex="-1">
+            <p class="blog-date">15 de Marzo, 2026 · 6 min de lectura</p>
+            <h3>Cómo digitalizar tu negocio en Chile sin morir en el intento: guía paso a paso para pymes</h3>
+            <p>Digitalizar tu empresa no significa gastar una fortuna. Descubre las herramientas, estrategias y pasos concretos para llevar tu negocio al mundo digital de manera efectiva y rentable.</p>
+            <a href="#" class="blog-link" data-article="digitalizacion" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
@@ -3683,8 +3722,15 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="footer-year"></span> GestixPro. Todos los derechos reservados. Hecho con ❤️ en Chile.</p>
-        <p>Diseñado por <span>GestixPro</span></p>
+        <p class="footer-credit">© <span id="footer-year"></span>
+          <svg class="footer-logo-svg" viewBox="0 0 70 13" role="img" aria-label="GestixPro" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="10.5" font-family="var(--font-b), Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="-0.2"><tspan fill="var(--white)">Gestix</tspan><tspan fill="var(--cyan)">Pro</tspan></text>
+          </svg> Todos los derechos reservados. Hecho con ❤️ en Chile.</p>
+        <p class="footer-credit">Diseñado por
+          <svg class="footer-logo-svg" viewBox="0 0 70 13" role="img" aria-label="GestixPro" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="10.5" font-family="var(--font-b), Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="-0.2"><tspan fill="var(--white)">Gestix</tspan><tspan fill="var(--cyan)">Pro</tspan></text>
+          </svg>
+        </p>
       </div>
     </div>
   </footer>
@@ -4632,6 +4678,44 @@
 
             <p>En GestixPro diseñamos estrategias de marketing digital a la medida de pymes chilenas: contenido, publicidad en redes y Google Ads, y seguimiento de resultados para que cada peso invertido se traduzca en clientes reales.</p>
           `
+        },
+        'agentes-ia': {
+          cover: 'img/blog-agentes-ia.svg',
+          cat: 'Inteligencia Artificial',
+          date: '6 de Mayo, 2026 · 8 min de lectura',
+          title: 'Agentes de IA: el nuevo empleado digital que todo emprendimiento y empresa chilena necesita en 2026',
+          html: `
+            <p>Hasta hace poco, hablar de "inteligencia artificial en el negocio" sonaba a ciencia ficción para la mayoría de los emprendedores chilenos. Hoy es exactamente lo contrario: un agente de IA bien implementado es una de las inversiones con retorno más rápido que puede hacer un negocio, sin importar si se trata de un emprendimiento de una persona o de una empresa con decenas de trabajadores.</p>
+
+            <h4>¿Qué es exactamente un agente de IA?</h4>
+            <p>Un agente de IA es un asistente digital capaz de entender lenguaje natural, tomar decisiones dentro de reglas definidas y ejecutar acciones de forma autónoma: responder preguntas, agendar una cita, cotizar un producto, derivar un caso complejo a una persona o actualizar un sistema interno. A diferencia de un simple chatbot con respuestas fijas, un agente de IA entiende contexto, recuerda la conversación y puede conectarse a tus sistemas reales —inventario, calendario, CRM— para actuar, no solo para responder.</p>
+
+            <h4>El caso más práctico: un agente de WhatsApp para tu emprendimiento</h4>
+            <p>En Chile, WhatsApp es el canal donde realmente ocurren las ventas de la mayoría de los emprendimientos. El problema es que un emprendedor no puede estar disponible las 24 horas, y cada minuto de demora en responder es un cliente que se va a la competencia. Un agente de WhatsApp personalizado resuelve exactamente eso:</p>
+            <ul>
+              <li><strong>Atención inmediata, todo el día:</strong> responde consultas de precios, disponibilidad y horarios en segundos, incluso a las 11 de la noche o un domingo.</li>
+              <li><strong>Toma pedidos y agenda citas:</strong> guía al cliente paso a paso hasta cerrar una venta o reservar una hora, sin intervención humana.</li>
+              <li><strong>Conoce tu negocio, no respuestas genéricas:</strong> se entrena con tu catálogo, tus precios y tu forma de hablarle a tus clientes, manteniendo la personalidad de tu marca.</li>
+              <li><strong>Sabe cuándo derivar a una persona:</strong> reconoce reclamos, casos complejos o clientes que prefieren hablar con un humano, y transfiere la conversación sin fricción.</li>
+              <li><strong>Nunca deja de aprender:</strong> cada conversación se puede revisar para detectar preguntas frecuentes y mejorar las respuestas con el tiempo.</li>
+            </ul>
+            <p>Para un emprendedor que hoy responde manualmente cada mensaje, esto significa recuperar horas del día y, sobre todo, dejar de perder ventas por no llegar a tiempo.</p>
+
+            <h4>En las empresas: agentes de IA que escalan operaciones completas</h4>
+            <p>En empresas de mayor tamaño, el impacto de los agentes de IA va más allá de la atención al cliente. Se convierten en una capa de automatización que conecta áreas completas del negocio:</p>
+            <ul>
+              <li><strong>Atención al cliente y soporte:</strong> agentes que resuelven la mayoría de las consultas de primer nivel y liberan al equipo humano para casos de mayor valor.</li>
+              <li><strong>Ventas y postventa:</strong> calificación automática de leads, seguimiento de cotizaciones y recordatorios de pago, sin que un vendedor tenga que hacerlo manualmente uno por uno.</li>
+              <li><strong>Procesos internos:</strong> agentes que revisan documentos, consolidan reportes o responden preguntas frecuentes de los propios trabajadores (RR.HH., finanzas, logística).</li>
+              <li><strong>Analítica en tiempo real:</strong> sistemas que detectan patrones en las conversaciones con clientes y entregan información útil para la toma de decisiones, algo imposible de hacer manualmente a gran escala.</li>
+            </ul>
+            <p>La diferencia con un emprendimiento no es el concepto, sino la escala: una empresa mediana puede tener varios agentes especializados trabajando en paralelo, integrados entre sí y con sus sistemas existentes (ERP, CRM, plataformas de pago), funcionando como un equipo digital disponible las 24 horas.</p>
+
+            <h4>Por qué 2026 es el momento de implementarlo</h4>
+            <p>La tecnología detrás de los agentes de IA maduró al punto de ser confiable, rápida de implementar y accesible en costo —ya no requiere un equipo de desarrollo propio ni meses de trabajo. Al mismo tiempo, los clientes chilenos ya esperan respuestas inmediatas: un negocio que tarda horas en contestar un WhatsApp está, en la práctica, compitiendo en desventaja frente a otro que responde al instante gracias a un agente de IA.</p>
+
+            <p>En GestixPro diseñamos e implementamos agentes de IA a medida —desde un agente de WhatsApp para emprendimientos hasta soluciones de automatización más complejas para empresas— integrados a tus procesos reales para que trabajen para ti desde el primer día.</p>
+          `
         }
       };
 
@@ -4690,6 +4774,151 @@
 
       overlay.addEventListener('click', e => { if (e.target === overlay) closeBlogModal(); });
       closeBtn.addEventListener('click', closeBlogModal);
+    })();
+
+    // ─── BLOG PAGINATION ────────────────────────────────────────
+    (function () {
+      const BLOG_PER_PAGE = 3;
+      let blogCurrentPage = 0;
+
+      const blogGrid  = document.getElementById('blog-grid');
+      const blogCards = [...blogGrid.querySelectorAll('.blog-card')];
+      const totalPages = Math.ceil(blogCards.length / BLOG_PER_PAGE);
+
+      const placeholders = [];
+      for (let i = 0; i < BLOG_PER_PAGE - 1; i++) {
+        const ph = document.createElement('div');
+        ph.className = 'blog-placeholder hidden';
+        ph.setAttribute('aria-hidden', 'true');
+        blogGrid.appendChild(ph);
+        placeholders.push(ph);
+      }
+
+      function renderBlogPage() {
+        const start = blogCurrentPage * BLOG_PER_PAGE;
+        const end   = start + BLOG_PER_PAGE;
+        let visibleCount = 0;
+        blogCards.forEach((card, i) => {
+          const show = i >= start && i < end;
+          card.classList.toggle('hidden', !show);
+          if (show) visibleCount++;
+        });
+
+        const missing = BLOG_PER_PAGE - visibleCount;
+        placeholders.forEach((ph, i) => {
+          ph.classList.toggle('hidden', i >= missing);
+        });
+
+        updateBlogNav();
+      }
+
+      function updateBlogNav() {
+        let nav = document.getElementById('blog-nav');
+
+        if (blogCards.length <= BLOG_PER_PAGE) {
+          if (nav) nav.style.display = 'none';
+          return;
+        }
+
+        if (!nav) {
+          nav = document.createElement('div');
+          nav.id = 'blog-nav';
+          nav.style.cssText = `
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+          `;
+          document.getElementById('blog-grid').after(nav);
+        }
+
+        nav.style.display = 'flex';
+        nav.innerHTML = `
+          <button type="button" id="blog-prev" aria-label="Artículos anteriores" style="
+            width:46px; height:46px; border-radius:50%;
+            background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.07);
+            color:#f5f9ff; cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            transition:0.35s cubic-bezier(0.4,0,0.2,1);
+            ${blogCurrentPage === 0 ? 'opacity:0.3; pointer-events:none;' : ''}
+          ">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+
+          <div style="display:flex; gap:8px; align-items:center;" id="blog-dots"></div>
+
+          <button type="button" id="blog-next" aria-label="Artículos siguientes" style="
+            width:46px; height:46px; border-radius:50%;
+            background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.07);
+            color:#f5f9ff; cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            transition:0.35s cubic-bezier(0.4,0,0.2,1);
+            ${blogCurrentPage === totalPages - 1 ? 'opacity:0.3; pointer-events:none;' : ''}
+          ">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        `;
+
+        const dotsContainer = document.getElementById('blog-dots');
+        for (let i = 0; i < totalPages; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.textContent = i + 1;
+          dot.setAttribute('aria-label', `Ir a la página ${i + 1}`);
+          const active = i === blogCurrentPage;
+          dot.style.cssText = `
+            width: 30px; height: 30px;
+            border-radius: 8px;
+            background: ${active ? '#00c2e0' : 'rgba(255,255,255,0.05)'};
+            border: 1px solid ${active ? '#00c2e0' : 'rgba(255,255,255,0.07)'};
+            color: ${active ? '#04141f' : '#7a8eab'};
+            font-family: var(--font-h);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+          `;
+          dot.addEventListener('click', () => {
+            blogCurrentPage = i;
+            renderBlogPage();
+          });
+          dotsContainer.appendChild(dot);
+        }
+
+        document.getElementById('blog-prev').addEventListener('mouseenter', function() {
+          if (blogCurrentPage > 0) this.style.background = '#0a4bda';
+        });
+        document.getElementById('blog-prev').addEventListener('mouseleave', function() {
+          this.style.background = 'rgba(255,255,255,0.05)';
+        });
+        document.getElementById('blog-next').addEventListener('mouseenter', function() {
+          if (blogCurrentPage < totalPages - 1) this.style.background = '#0a4bda';
+        });
+        document.getElementById('blog-next').addEventListener('mouseleave', function() {
+          this.style.background = 'rgba(255,255,255,0.05)';
+        });
+
+        document.getElementById('blog-prev').addEventListener('click', () => {
+          if (blogCurrentPage > 0) {
+            blogCurrentPage--;
+            renderBlogPage();
+          }
+        });
+        document.getElementById('blog-next').addEventListener('click', () => {
+          if (blogCurrentPage < totalPages - 1) {
+            blogCurrentPage++;
+            renderBlogPage();
+          }
+        });
+      }
+
+      renderBlogPage();
     })();
 
     // ─── REFERRAL PROMO MODAL ──────────────────────────────────
