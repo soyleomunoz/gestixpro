@@ -105,8 +105,13 @@ def leer_literal_js(nombre, archivo='index.html'):
     return json.loads(out)
 
 
-def cuerpo_a_html(body, formato):
+def cuerpo_a_html(body, formato, escapar=False):
     """Convierte el cuerpo del artículo al HTML de la página estática."""
+    if escapar:  # el sitio inserta el texto con textContent: hay que escaparlo
+        if formato == 'parrafos':
+            body = [E(x) for x in body]
+        elif formato == 'tuplas':
+            body = [[b[0], [E(x) for x in b[1]] if isinstance(b[1], list) else E(b[1])] for b in body]
     if formato == 'html':
         return body.strip()
     if formato == 'parrafos':  # ['texto', 'texto', ...]  (admite HTML inline)
@@ -124,9 +129,33 @@ def cuerpo_a_html(body, formato):
     raise ValueError('Formato de cuerpo desconocido: ' + formato)
 
 
+def articulos_dom(f):
+    """Artículos escritos como modales en el HTML (<div class="..." data-slug=... data-fecha=...>)."""
+    from bs4 import BeautifulSoup
+    sopa = BeautifulSoup(open(os.path.join(ROOT, f.get('archivo', 'index.html')), encoding='utf-8').read(), 'html.parser')
+    res = []
+    for m in sopa.select(f['modal']):
+        titulo = m.select_one(f['titulo']).get_text(' ', strip=True)
+        cat = m.select_one(f['categoria']).get_text(' ', strip=True) if f.get('categoria') and m.select_one(f['categoria']) else 'Blog'
+        cuerpo = m.select_one(f['cuerpo'])
+        cuerpo = BeautifulSoup(str(cuerpo), 'html.parser').select_one(f['cuerpo'])
+        for sel in f.get('excluir', []):
+            for x in cuerpo.select(sel):
+                x.decompose()
+        res.append({'key': m.get('id'), 'slug': m['data-slug'], 'titulo': titulo,
+                    'resumen': m.get('data-resumen', ''), 'categoria': cat, 'fecha': m['data-fecha'],
+                    'lectura': m.get('data-lectura'), 'portada': m.get('data-portada'),
+                    'portada_alt': m.get('data-portada-alt') or titulo, 'html': cuerpo.decode_contents().strip()})
+    return res
+
+
 def articulos():
     """Normaliza los artículos según tools/blog.config.json → fuente."""
     f = CFG['fuente']
+    if f.get('tipo') == 'dom':
+        res = articulos_dom(f)
+        res.sort(key=lambda x: x['fecha'], reverse=True)
+        return res
     data = leer_literal_js(f['literal'])
     if 'ruta' in f:  # p. ej. "blog.posts" dentro de un objeto de traducciones
         for k in f['ruta'].split('.'):
@@ -140,11 +169,15 @@ def articulos():
         slug = g('slug') or slugify(titulo)
         art = {
             'key': key, 'slug': slug, 'titulo': titulo,
-            'resumen': g('resumen') or '', 'categoria': g('categoria') or 'Blog',
+            'resumen': g('resumen') or '', 'categoria': g('categoria') or f.get('categoria_defecto', 'Blog'),
             'fecha': g('fecha'), 'lectura': g('lectura'),
-            'portada': g('portada'), 'portada_alt': g('portada_alt') or titulo,
-            'html': cuerpo_a_html(g('cuerpo'), f.get('formato', 'html')),
+            'portada': g('portada') or (f['portada_patron'].format(slug=slug) if f.get('portada_patron') else None),
+            'portada_alt': g('portada_alt') or titulo,
+            'html': cuerpo_a_html(g('cuerpo'), f.get('formato', 'html'), f.get('escapar_texto', False)),
         }
+        if not art['lectura']:
+            palabras = len(re.sub('<[^>]+>', ' ', art['html']).split())
+            art['lectura'] = max(2, round(palabras / 200))
         if not art['fecha']:
             sys.exit(f'Falta la fecha ISO (AAAA-MM-DD) del artículo "{titulo}"')
         if not art['resumen']:
@@ -156,14 +189,14 @@ def articulos():
 
 # ── Página estática ───────────────────────────────────────────────────────────
 def con_ids(cuerpo):
-    """Agrega id a cada subtítulo (h4) y arma el índice del artículo."""
+    """Agrega id a cada subtítulo (h3/h4) y arma el índice del artículo."""
     toc = []
     def rep(m):
         txt = re.sub('<[^>]+>', '', m.group(2)).strip()
         i = slugify(txt)[:40] or f's{len(toc)}'
         toc.append((i, txt))
         return f'<h4{m.group(1)} id="{i}">{m.group(2)}</h4>'
-    cuerpo = re.sub(r'<h4([^>]*)>(.*?)</h4>', rep, cuerpo, flags=re.S)
+    cuerpo = re.sub(r'<h[34]((?:(?!\bid=)[^>])*)>(.*?)</h[34]>', rep, cuerpo, flags=re.S)
     return cuerpo, toc
 
 
@@ -202,6 +235,8 @@ def pagina(a, todos):
     logo = CFG['logo_html'].replace('src="', 'src="../') if 'src="' in CFG['logo_html'] else CFG['logo_html']
     creditos = CFG.get('creditos_html', 'Desarrollado por <a href="https://gestixpro.cl/" target="_blank" rel="noopener">GestixPro</a>')
     fuentes = CFG.get('fuentes_html', '').replace('url(assets/', 'url(../assets/')
+    fav = CFG.get('favicon', 'favicon.ico')
+    fav = fav if fav.startswith(('data:', 'http')) else '../' + fav
     nota = f'<p class="note">{CFG["nota_articulo"]}</p>' if CFG.get('nota_articulo') else ''
     return f'''<!DOCTYPE html>
 <html lang="{CFG.get('lang', 'es-CL')}">
@@ -229,21 +264,21 @@ def pagina(a, todos):
 <meta name="twitter:title" content="{E(a['titulo'])}">
 <meta name="twitter:description" content="{E(a['resumen'])}">
 <meta name="twitter:image" content="{og}">
-<link rel="icon" href="../{CFG.get('favicon', 'favicon.ico')}">
+<link rel="icon" href="{fav}">
 <script type="application/ld+json">{json.dumps(ld_post, ensure_ascii=False)}</script>
 <script type="application/ld+json">{json.dumps(ld_bc, ensure_ascii=False)}</script>
 {fuentes}
 <style>
-:root{{--bg:{t['fondo']};--bg2:{t['fondo2']};--tx:{t['texto']};--mu:{t['suave']};--ac:{t['acento']};--ac2:{t.get('acento2', t['acento'])};--bd:{t['borde']};--hd:{t.get('titulos', t['texto'])};--btn-tx:{t.get('boton_texto', '#fff')}}}
+:root{{--bg:{t['fondo']};--bg2:{t['fondo2']};--tx:{t['texto']};--mu:{t['suave']};--ac:{t['acento']};--ac2:{t.get('acento2', t['acento'])};--bd:{t['borde']};--hd:{t.get('titulos', t['texto'])};--btn-tx:{t.get('boton_texto', '#fff')};--hbg:{t.get('cabecera', 'color-mix(in srgb,' + t['fondo'] + ' 92%,transparent)')};--htx:{t.get('cabecera_texto', t['texto'])}}}
 *{{box-sizing:border-box}}html,body{{overflow-x:hidden}}
 body{{margin:0;background:var(--bg);color:var(--tx);font-family:{t['fuente_texto']};font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}}
 img{{max-width:100%;height:auto;display:block}}a{{color:var(--ac)}}:focus-visible{{outline:3px solid var(--ac);outline-offset:3px;border-radius:6px}}
 .skip{{position:absolute;left:-9999px}}.skip:focus{{left:12px;top:8px;background:var(--ac);color:var(--btn-tx);padding:10px 14px;border-radius:10px;z-index:9}}
-header{{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}}
+header{{position:sticky;top:0;z-index:5;background:var(--hbg);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}}
 .hd{{max-width:1160px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}}
-.logo{{font-family:{t['fuente_titulos']};font-weight:800;font-size:1.35rem;color:var(--hd);text-decoration:none;display:flex;align-items:center}}.logo img{{height:40px;width:auto}}
+.logo{{font-family:{t['fuente_titulos']};font-weight:800;font-size:1.35rem;color:var(--htx);text-decoration:none;display:flex;align-items:center}}.logo img{{height:40px;width:auto}}
 .hd nav{{display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-end;align-items:center}}
-.hd nav a{{text-decoration:none;color:var(--tx);font-weight:600;font-size:.9rem;padding:8px 11px;border-radius:999px;white-space:nowrap}}.hd nav a:hover{{background:var(--bg2)}}
+.hd nav a{{text-decoration:none;color:var(--htx);font-weight:600;font-size:.9rem;padding:8px 11px;border-radius:999px;white-space:nowrap}}.hd nav a:hover{{background:color-mix(in srgb,var(--htx) 12%,transparent)}}
 .hd nav a.cta{{background:var(--ac);color:var(--btn-tx)}}
 @media(max-width:860px){{.hd nav a:not(.cta){{display:none}}}}
 .hd nav a .sm{{display:none}}@media(max-width:560px){{.hd nav a .lg{{display:none}}.hd nav a .sm{{display:inline}}.logo{{font-size:1.15rem}}.logo img{{height:34px}}}}
@@ -297,26 +332,31 @@ footer{{border-top:1px solid var(--bd);color:var(--mu);font-size:.88rem;padding:
 
 
 # ── Imágenes para compartir (1200x630) ────────────────────────────────────────
-def html_og(img_rel, kicker, titulo, pie):
+def html_og(img_rel, kicker, titulo, pie, estilo=None, posicion='center', fondo_css=None):
     t = CFG['tema']
     img = f'file://{os.path.join(ROOT, img_rel)}' if img_rel else ''
     fuentes = CFG.get('fuentes_html', '').replace('url(assets/', f'url(file://{ROOT}/assets/')
-    fondo = (f'<img class="bg" src="{img}">' if img else '')
-    if img and CFG.get('og_estilo', 'portada') == 'portada':
+    fondo = (f'<img class="bg" src="{img}" style="object-position:{posicion}">' if img else '')
+    if img and estilo == 'lateral':
+        # Imagen recortada o de producto (PNG) a la derecha, texto a la izquierda
+        fondo = f'<img class="lat" src="{img}">'
+    if img and (estilo or CFG.get('og_estilo', 'portada')) == 'portada':
         # La imagen para compartir es la misma portada, recortada a 1200x630
         return f'<!DOCTYPE html><html><head><meta charset="utf-8"><style>*{{margin:0}}body{{width:1200px;height:630px;overflow:hidden;background:{t["fondo"]}}}.bg{{width:100%;height:100%;object-fit:cover;display:block}}</style></head><body>{fondo}</body></html>'
     tam = 64 if len(titulo) < 60 else 54 if len(titulo) < 95 else 46
     return f'''<!DOCTYPE html><html><head><meta charset="utf-8">{fuentes}<style>
 *{{margin:0;box-sizing:border-box}}body{{width:1200px;height:630px;overflow:hidden;position:relative;
-background:linear-gradient(135deg,{t['fondo']},{t['acento']});font-family:{t['fuente_texto']}}}
+background:{fondo_css or 'linear-gradient(135deg,' + t['fondo'] + ',' + t['acento'] + ')'};font-family:{t['fuente_texto']}}}
 .bg{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}}
+.lat{{position:absolute;right:40px;top:40px;width:470px;height:550px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}}
+body.l .tx{{right:540px;bottom:auto;top:50%;transform:translateY(-50%)}}body.l .sh{{background:none}}
 .sh{{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 20%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.88))}}
 .tx{{position:absolute;left:64px;right:64px;bottom:56px;color:#fff}}
 .k{{display:inline-block;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:{t['acento']};color:{t.get('boton_texto', '#fff')};padding:8px 18px;border-radius:999px;margin-bottom:20px}}
 h1{{font-family:{t['fuente_titulos']};font-size:{tam}px;line-height:1.12;font-weight:800;text-shadow:0 2px 18px rgba(0,0,0,.4);
 display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
 .p{{margin-top:22px;font-size:24px;font-weight:600;opacity:.92}}
-</style></head><body>{fondo}<div class="sh"></div><div class="tx">
+</style></head><body class="{'l' if img and estilo == 'lateral' else ''}">{fondo}<div class="sh"></div><div class="tx">
 {f'<span class="k">{E(kicker)}</span>' if kicker else ''}<h1>{E(titulo)}</h1><p class="p">{E(pie)}</p></div></body></html>'''
 
 
@@ -425,7 +465,7 @@ def main():
         home = os.path.join(ROOT, 'og-image.jpg')
         oh = CFG.get('og_home')
         if oh and (args.og_home or not os.path.exists(home)):
-            trabajos.append((html_og(oh.get('imagen'), oh.get('kicker', ''), oh['titulo'], pie), home))
+            trabajos.append((html_og(oh.get('imagen'), oh.get('kicker', ''), oh['titulo'], pie, oh.get('estilo', 'titular'), oh.get('posicion', 'center'), oh.get('fondo')), home))
         renderizar(trabajos)
         if arts:
             huellas = {k: v for k, v in huellas.items() if k in vigentes}
