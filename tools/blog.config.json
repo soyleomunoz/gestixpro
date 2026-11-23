@@ -1,0 +1,93 @@
+{
+  "site": "https://gestixpro.cl",
+  "nombre": "GestixPro",
+  "lang": "es-CL",
+  "favicon": "favicon.svg",
+  "firma": "GestixPro · Leonardo Muñoz",
+  "autor": {
+    "@type": "Person",
+    "name": "Leonardo Muñoz",
+    "url": "https://gestixpro.cl/"
+  },
+  "ancla_blog": "#blog",
+  "logo_html": "Gestix<span style=\"color:#00c2e0\">Pro</span>",
+  "nav": [
+    [
+      "Servicios",
+      "#servicios"
+    ],
+    [
+      "Portafolio",
+      "#portafolio"
+    ],
+    [
+      "Blog",
+      "#blog"
+    ],
+    [
+      "Contacto",
+      "#contacto"
+    ]
+  ],
+  "cta": {
+    "titulo": "¿Tu negocio tiene este problema?",
+    "texto": "Cuéntame qué necesitas y te propongo una solución a la medida de tu pyme, sin compromiso.",
+    "boton": "Escríbeme por WhatsApp",
+    "url": "https://wa.me/56975233425?text=Hola%20Leonardo%2C%20le%C3%AD%20tu%20blog%20en%20gestixpro.cl%20y%20quiero%20cotizar",
+    "boton_corto": "WhatsApp"
+  },
+  "creditos_html": "Hecho en Santiago, Chile · <a href=\"https://gestixpro.cl/\">gestixpro.cl</a>",
+  "fuentes_html": "<style id=\"local-fonts\">\n/* Tipografías alojadas en el sitio (Fontsource, licencia OFL) */\n@font-face{font-family:\"Syne\";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/syne-latin-400-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"Syne\";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/syne-latin-600-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"Syne\";font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/syne-latin-700-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"Syne\";font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/syne-latin-800-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/dm-sans-latin-300-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:italic;font-weight:300;font-display:swap;src:url(assets/fonts/dm-sans-latin-300-italic.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/dm-sans-latin-400-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/dm-sans-latin-500-normal.woff2) format(\"woff2\")}\n</style>",
+  "tema": {
+    "fondo": "#050d1f",
+    "fondo2": "#0d1f3c",
+    "texto": "#dce6f5",
+    "suave": "#8fa3c2",
+    "acento": "#1e6fff",
+    "acento2": "#00c2e0",
+    "borde": "rgba(255,255,255,0.09)",
+    "titulos": "#f5f9ff",
+    "boton_texto": "#ffffff",
+    "fuente_titulos": "'Syne',sans-serif",
+    "fuente_texto": "'DM Sans',sans-serif",
+    "h1_min": "1.6rem",
+    "h1_max": "2.15rem"
+  },
+  "og_home": {
+    "imagen": null,
+    "kicker": "Agencia digital en Chile",
+    "titulo": "Sitios web, software y marketing digital para tu pyme"
+  },
+  "fuente": {
+    "literal": "ARTICLES",
+    "formato": "html",
+    "campos": {
+      "slug": "slug",
+      "titulo": "title",
+      "resumen": "resumen",
+      "categoria": "cat",
+      "fecha": "fecha",
+      "lectura": "lectura",
+      "portada": "cover",
+      "cuerpo": "html",
+      "portada_alt": ""
+    }
+  },
+  "llms": {
+    "resumen": "GestixPro es una agencia digital chilena dirigida por Leonardo Muñoz que ayuda a emprendedores y pymes a crecer con tecnología: desarrollo de sitios web y landing pages, software y aplicaciones a medida, marketing y publicidad digital (Meta y Google), producción audiovisual, agentes de IA y asesoría para postular a fondos públicos como CORFO, SERCOTEC y FOSIS.",
+    "datos": [
+      "Ubicación: Santiago, Chile; atiende a clientes de todo el país",
+      "Contacto: WhatsApp +56 9 7523 3425 · gestixpro@gmail.com",
+      "Instagram: https://www.instagram.com/gestixpro/",
+      "Programa de referidos con comisión para quienes recomienden clientes"
+    ],
+    "paginas": [
+      [
+        "Inicio",
+        "",
+        "servicios, beneficios, proceso de trabajo, portafolio de clientes, blog, preguntas frecuentes, programa de referidos y contacto"
+      ]
+    ],
+    "titulo_blog": "Blog de tecnología para pymes"
+  }
+}

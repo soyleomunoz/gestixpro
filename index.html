@@ -10,11 +10,17 @@
   <meta property="og:title" content="GestixPro – Soluciones Digitales Integrales" />
   <meta property="og:description" content="Tecnología, marketing y financiamiento en un solo lugar para hacer crecer tu negocio en Chile." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://gestixpro.cl" />
+  <meta property="og:url" content="https://gestixpro.cl/" />
+  <link rel="canonical" href="https://gestixpro.cl/" />
   <meta property="og:image" content="https://gestixpro.cl/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:site_name" content="GestixPro" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="GestixPro – Soluciones Digitales" />
   <meta name="twitter:description" content="Digitaliza, automatiza y crece con GestixPro." />
+  <meta name="twitter:image" content="https://gestixpro.cl/og-image.jpg" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -3297,7 +3303,7 @@
             <p class="blog-date">6 de Mayo, 2026 · 8 min de lectura</p>
             <h3>Agentes de IA: el nuevo empleado digital que todo emprendimiento y empresa chilena necesita en 2026</h3>
             <p>Desde un agente de WhatsApp que atiende y vende 24/7 hasta sistemas que automatizan procesos completos en grandes empresas: así están usando la inteligencia artificial los negocios que hoy le sacan ventaja a su competencia.</p>
-            <a href="#" class="blog-link" data-article="agentes-ia" aria-hidden="true" tabindex="-1">
+            <a href="blog/agentes-de-ia-para-emprendimientos-y-empresas.html" class="blog-link" data-article="agentes-ia" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
@@ -3313,7 +3319,7 @@
             <p class="blog-date">18 de Abril, 2026 · 5 min de lectura</p>
             <h3>Marketing digital en 2026: por qué tu pyme no puede seguir ignorando Instagram, TikTok y Google Ads</h3>
             <p>El comportamiento del consumidor chileno cambió radicalmente. Si tu empresa no tiene presencia activa en el ecosistema digital, está perdiendo clientes frente a competidores que sí la tienen. Esto es lo que debes hacer.</p>
-            <a href="#" class="blog-link" data-article="marketing" aria-hidden="true" tabindex="-1">
+            <a href="blog/marketing-digital-pymes-instagram-tiktok-google-ads.html" class="blog-link" data-article="marketing" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
@@ -3329,7 +3335,7 @@
             <p class="blog-date">2 de Abril, 2026 · 7 min de lectura</p>
             <h3>Guía definitiva para postular a CORFO y FOSIS en 2026: requisitos, plazos y errores a evitar</h3>
             <p>Cientos de millones de pesos en subsidios están disponibles para emprendedores chilenos. Te enseñamos cómo identificar el fondo correcto para tu negocio y preparar una postulación ganadora.</p>
-            <a href="#" class="blog-link" data-article="fondos" aria-hidden="true" tabindex="-1">
+            <a href="blog/postular-corfo-fosis-requisitos-plazos-errores.html" class="blog-link" data-article="fondos" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
@@ -3345,7 +3351,7 @@
             <p class="blog-date">15 de Marzo, 2026 · 6 min de lectura</p>
             <h3>Cómo digitalizar tu negocio en Chile sin morir en el intento: guía paso a paso para pymes</h3>
             <p>Digitalizar tu empresa no significa gastar una fortuna. Descubre las herramientas, estrategias y pasos concretos para llevar tu negocio al mundo digital de manera efectiva y rentable.</p>
-            <a href="#" class="blog-link" data-article="digitalizacion" aria-hidden="true" tabindex="-1">
+            <a href="blog/como-digitalizar-tu-negocio-en-chile.html" class="blog-link" data-article="digitalizacion" aria-hidden="true" tabindex="-1">
               Leer artículo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
             </a>
@@ -4623,8 +4629,16 @@
       const contentEl = document.getElementById('blog-modal-content');
       let lastFocused = null;
 
+      // Cada artículo también se publica como página estática en blog/<slug>.html
+      // (tools/blog_estatico.py). Campos obligatorios: slug, fecha (AAAA-MM-DD), lectura
+      // (minutos), resumen, cover, cat, date, title y html. La tarjeta del blog enlaza a esa
+      // página y el clic se intercepta para abrir este modal.
       const ARTICLES = {
         digitalizacion: {
+          slug: 'como-digitalizar-tu-negocio-en-chile',
+          fecha: '2026-03-15',
+          lectura: 6,
+          resumen: 'Digitalizar tu empresa no significa gastar una fortuna. Descubre las herramientas, estrategias y pasos concretos para llevar tu negocio al mundo digital de manera efectiva y rentable.',
           cover: 'img/blog-digitalizacion.jpg',
           cat: 'Transformación Digital',
           date: '15 de Marzo, 2026 · 6 min de lectura',
@@ -4655,6 +4669,10 @@
           `
         },
         fondos: {
+          slug: 'postular-corfo-fosis-requisitos-plazos-errores',
+          fecha: '2026-04-02',
+          lectura: 7,
+          resumen: 'Cientos de millones de pesos en subsidios están disponibles para emprendedores chilenos. Te enseñamos cómo identificar el fondo correcto para tu negocio y preparar una postulación ganadora.',
           cover: 'img/blog-fondos.jpg',
           cat: 'Fondos & Financiamiento',
           date: '2 de Abril, 2026 · 7 min de lectura',
@@ -4688,6 +4706,10 @@
           `
         },
         marketing: {
+          slug: 'marketing-digital-pymes-instagram-tiktok-google-ads',
+          fecha: '2026-04-18',
+          lectura: 5,
+          resumen: 'El comportamiento del consumidor chileno cambió radicalmente. Si tu empresa no tiene presencia activa en el ecosistema digital, está perdiendo clientes frente a competidores que sí la tienen. Esto es lo que debes hacer.',
           cover: 'img/blog-marketing.jpg',
           cat: 'Marketing Digital',
           date: '18 de Abril, 2026 · 5 min de lectura',
@@ -4715,6 +4737,10 @@
           `
         },
         'agentes-ia': {
+          slug: 'agentes-de-ia-para-emprendimientos-y-empresas',
+          fecha: '2026-05-06',
+          lectura: 8,
+          resumen: 'Desde un agente de WhatsApp que atiende y vende 24/7 hasta sistemas que automatizan procesos completos en grandes empresas: así están usando la inteligencia artificial los negocios que hoy le sacan ventaja a su competencia.',
           cover: 'img/blog-agentes-ia.svg',
           cat: 'Inteligencia Artificial',
           date: '6 de Mayo, 2026 · 8 min de lectura',
@@ -4798,7 +4824,12 @@
       }
 
       document.querySelectorAll('.blog-card[data-article]').forEach(card => {
-        card.addEventListener('click', () => openBlogModal(card.dataset.article));
+        card.addEventListener('click', e => {
+          // Ctrl/Cmd + clic abre la página estática del artículo en otra pestaña
+          if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+          e.preventDefault();
+          openBlogModal(card.dataset.article);
+        });
         card.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
