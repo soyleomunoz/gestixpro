@@ -3294,7 +3294,23 @@
 
         <!-- Los artículos más nuevos se agregan PRIMERO (arriba) para que aparezcan en la página 1 -->
 
-        <article class="blog-card reveal" style="transition-delay:0.05s" data-article="agentes-ia" tabindex="0" role="button" aria-label="Leer artículo: Agentes de IA, el nuevo empleado digital de emprendimientos y empresas">
+        <article class="blog-card reveal" style="transition-delay:0.05s" data-article="software" tabindex="0" role="button" aria-label="Leer artículo: Cuándo conviene un software a medida para tu pyme">
+          <div class="blog-thumb blog-thumb-1">
+            <img src="img/blog-software.svg" alt="" loading="lazy" />
+            <span class="blog-cat">Software a Medida</span>
+          </div>
+          <div class="blog-body">
+            <p class="blog-date">23 de Noviembre, 2026 · 6 min de lectura</p>
+            <h3>¿Tu pyme vive en planillas Excel y chats de WhatsApp? Cuándo conviene un software a medida y cómo dar el salto</h3>
+            <p>Stock que no cuadra, datos en el celular de una persona y cierres de mes eternos. Así sabes que tu negocio superó la planilla y así pasas a tu propio sistema, paso a paso.</p>
+            <a href="blog/software-a-medida-pymes-chile-planillas-excel.html" class="blog-link" data-article="software" aria-hidden="true" tabindex="-1">
+              Leer artículo
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M5 12h14"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="blog-card reveal" style="transition-delay:0.1s" data-article="agentes-ia" tabindex="0" role="button" aria-label="Leer artículo: Agentes de IA, el nuevo empleado digital de emprendimientos y empresas">
           <div class="blog-thumb blog-thumb-4">
             <img src="img/blog-agentes-ia.svg" alt="" loading="lazy" />
             <span class="blog-cat">Inteligencia Artificial</span>
@@ -3310,7 +3326,7 @@
           </div>
         </article>
 
-        <article class="blog-card reveal" style="transition-delay:0.1s" data-article="marketing" tabindex="0" role="button" aria-label="Leer artículo: Marketing digital en 2026">
+        <article class="blog-card reveal" style="transition-delay:0.15s" data-article="marketing" tabindex="0" role="button" aria-label="Leer artículo: Marketing digital en 2026">
           <div class="blog-thumb blog-thumb-3">
             <img src="img/blog-marketing.jpg" alt="" loading="lazy" />
             <span class="blog-cat">Marketing Digital</span>
@@ -3326,7 +3342,7 @@
           </div>
         </article>
 
-        <article class="blog-card reveal" style="transition-delay:0.15s" data-article="fondos" tabindex="0" role="button" aria-label="Leer artículo: Guía definitiva para postular a CORFO y FOSIS en 2026">
+        <article class="blog-card reveal" style="transition-delay:0.2s" data-article="fondos" tabindex="0" role="button" aria-label="Leer artículo: Guía definitiva para postular a CORFO y FOSIS en 2026">
           <div class="blog-thumb blog-thumb-2">
             <img src="img/blog-fondos.jpg" alt="" loading="lazy" />
             <span class="blog-cat">Fondos &amp; Financiamiento</span>
@@ -3342,7 +3358,7 @@
           </div>
         </article>
 
-        <article class="blog-card reveal" style="transition-delay:0.2s" data-article="digitalizacion" tabindex="0" role="button" aria-label="Leer artículo: Cómo digitalizar tu negocio en Chile sin morir en el intento">
+        <article class="blog-card reveal" style="transition-delay:0.25s" data-article="digitalizacion" tabindex="0" role="button" aria-label="Leer artículo: Cómo digitalizar tu negocio en Chile sin morir en el intento">
           <div class="blog-thumb blog-thumb-1">
             <img src="img/blog-digitalizacion.jpg" alt="" loading="lazy" />
             <span class="blog-cat">Transformación Digital</span>
@@ -4634,6 +4650,79 @@
       // (minutos), resumen, cover, cat, date, title y html. La tarjeta del blog enlaza a esa
       // página y el clic se intercepta para abrir este modal.
       const ARTICLES = {
+        software: {
+          slug: 'software-a-medida-pymes-chile-planillas-excel',
+          fecha: '2026-11-23',
+          lectura: 6,
+          resumen: 'Stock que no cuadra, datos en el celular de una persona y cierres de mes eternos. Así sabes que tu negocio superó la planilla y así pasas a tu propio sistema, paso a paso.',
+          cover: 'img/blog-software.svg',
+          cat: 'Software a Medida',
+          date: '23 de Noviembre, 2026 · 6 min de lectura',
+          title: '¿Tu pyme vive en planillas Excel y chats de WhatsApp? Cuándo conviene un software a medida y cómo dar el salto',
+          html: `
+            <p>Si tu negocio funciona con una planilla Excel para el stock, otra para los clientes, un cuaderno para las deudas y diez grupos de WhatsApp para coordinar pedidos, no eres el único. Así parten muchísimas pymes y emprendimientos en Chile, y está bien: al principio, la planilla es rápida, gratis y cualquiera la entiende.</p>
+            <p>El problema aparece cuando el negocio crece y la planilla no. Ese es el momento en que pasas más tiempo ordenando información que vendiendo. En este artículo te cuento cómo darte cuenta de que llegaste a ese punto, qué cuesta seguir así y cómo pasar a un software a medida sin que se transforme en un proyecto eterno.</p>
+
+            <h4>Señales de que tu negocio ya superó la planilla</h4>
+            <p>No necesitas ser una empresa grande para necesitar un sistema propio. Revisa si te pasa alguna de estas situaciones:</p>
+            <ul>
+              <li><strong>Hay varias versiones de la verdad:</strong> "stock_final.xlsx", "stock_final_v2.xlsx" y "stock_bueno_ESTE.xlsx". Nadie sabe cuál es la correcta y cada persona trabaja con la suya.</li>
+              <li><strong>Vendes algo que ya no tienes:</strong> el cliente paga por transferencia, vas a buscar el producto y descubres que se vendió ayer en el local, pero nadie actualizó la planilla.</li>
+              <li><strong>La información vive en el celular de una persona:</strong> si tu vendedora o tu socio se enferma o se va, los datos de clientes, pedidos y acuerdos se van con su WhatsApp.</li>
+              <li><strong>Copias y pegas lo mismo todo el día:</strong> el pedido llega por WhatsApp, lo anotas en Excel, después lo copias a la guía de despacho y otra vez al resumen del mes.</li>
+              <li><strong>Cerrar el mes es un drama:</strong> armar un reporte de ventas, comisiones o cuentas por cobrar te toma un fin de semana completo y aun así no confías en el resultado.</li>
+              <li><strong>No puedes responder preguntas simples:</strong> ¿cuál es tu producto más rentable?, ¿qué clientes no compran hace tres meses?, ¿cuánto te deben hoy? Si la respuesta es "tendría que revisar", la información existe, pero no te sirve.</li>
+            </ul>
+            <p>Si te identificaste con dos o más, tu negocio ya está pagando el costo de no tener un sistema.</p>
+
+            <h4>Lo que realmente te cuesta seguir así</h4>
+            <p>La planilla parece gratis, pero se paga de otras formas. Se paga en <strong>horas</strong>: las tuyas o las de tu equipo, dedicadas a transcribir, buscar y corregir datos en vez de atender clientes. Se paga en <strong>errores</strong>: un pedido duplicado, una boleta con el monto equivocado, un cliente al que le cobraste dos veces o al que nunca le cobraste. Y se paga en <strong>decisiones a ciegas</strong>: compras mercadería "por intuición" porque no tienes a mano lo que realmente se vende.</p>
+            <p>Hay un costo menos visible: la <strong>seguridad de los datos de tus clientes</strong>. Una planilla con nombres, RUT, teléfonos y direcciones que viaja por correo, pendrive o WhatsApp es difícil de proteger. En Chile, además, ya está publicada la Ley 21.719, la nueva ley de protección de datos personales, que eleva las exigencias sobre cómo las empresas recolectan, guardan y usan esa información. Ordenar tus datos en un sistema con usuarios, permisos y respaldos es un buen paso para prepararte.</p>
+
+            <h4>¿Software a medida o un sistema "de caja"?</h4>
+            <p>No siempre necesitas desarrollar algo desde cero, y prefiero decírtelo de entrada. Hay buenos sistemas estándar para contabilidad, facturación o agenda. La pregunta es si tu forma de trabajar cabe en ellos o si terminas adaptando tu negocio al software, con parches y planillas paralelas.</p>
+            <p>Un software a medida conviene cuando:</p>
+            <ul>
+              <li>Tu proceso tiene <strong>reglas propias</strong> que ningún sistema genérico contempla: cómo cotizas, cómo calculas comisiones, cómo asignas turnos o cómo haces seguimiento a tus alumnos o pacientes.</li>
+              <li>Hoy usas <strong>varias herramientas que no se hablan entre sí</strong> y necesitas una sola fuente de información.</li>
+              <li>Pagas licencias por usuario de un sistema del que usas una pequeña parte, y aun así sigues con Excel al lado.</li>
+              <li>Quieres que tus clientes hagan algo por su cuenta: revisar el estado de su pedido, descargar un documento o reservar, sin escribirte.</li>
+            </ul>
+            <p>A veces la mejor solución es mixta: un sistema estándar para lo tributario y una aplicación a medida para tu operación, conectados entre sí. Lo importante es elegir con criterio y no por moda.</p>
+
+            <h4>Cómo pasar de la planilla a tu propio sistema, paso a paso</h4>
+            <p>Desarrollar software no tiene por qué ser un proyecto de un año. Así lo trabajo con mis clientes:</p>
+            <ul>
+              <li><strong>1. Mapear el proceso real:</strong> antes de hablar de pantallas, conversamos de cómo funciona hoy tu negocio. ¿Por dónde entra un pedido?, ¿quién lo toca?, ¿dónde se traba? Ahí suelen aparecer los cuellos de botella que más tiempo te quitan.</li>
+              <li><strong>2. Elegir el primer problema a resolver:</strong> no se digitaliza todo de una vez. Partimos por lo que más duele o lo que más plata deja en la mesa: inventario, pedidos, agenda, cobranza.</li>
+              <li><strong>3. Construir una primera versión funcional:</strong> una versión acotada que tu equipo pueda usar de verdad en pocas semanas, en vez de esperar meses por un sistema "completo".</li>
+              <li><strong>4. Migrar tus datos:</strong> tus planillas no se pierden. La información que ya tienes se limpia y se carga al sistema para que partas con tu historial.</li>
+              <li><strong>5. Capacitar y ajustar:</strong> el sistema se prueba con el uso diario. Escucho lo que tu equipo reclama y lo voy ajustando hasta que trabajar en él sea más fácil que volver al Excel.</li>
+              <li><strong>6. Crecer por etapas:</strong> cuando la primera parte funciona, sumamos módulos: reportes, portal para clientes, conexión con tu sitio web o con un agente de WhatsApp.</li>
+            </ul>
+
+            <h4>Criterios para no equivocarte al contratar</h4>
+            <p>Si vas a encargar un desarrollo, conmigo o con quien sea, fíjate en esto:</p>
+            <ul>
+              <li><strong>Que te pregunten por tu negocio antes que por la tecnología.</strong> Si la primera conversación es sobre lenguajes de programación, mala señal.</li>
+              <li><strong>Que el sistema funcione en el celular.</strong> En muchas pymes, buena parte del trabajo se hace desde el teléfono, en terreno o en el local.</li>
+              <li><strong>Que tus datos sean tuyos:</strong> que puedas exportarlos cuando quieras y que existan respaldos automáticos.</li>
+              <li><strong>Que haya usuarios y permisos:</strong> no todos en tu equipo necesitan ver ventas, costos o datos de clientes.</li>
+              <li><strong>Que el alcance esté por escrito:</strong> qué incluye la primera versión, en qué plazo y qué queda para etapas siguientes.</li>
+              <li><strong>Que haya soporte después de la entrega:</strong> un sistema se usa durante años y siempre surgen ajustes.</li>
+            </ul>
+
+            <h4>Por qué hacerlo conmigo en GestixPro</h4>
+            <p>En GestixPro trabajo contigo directamente, sin intermediarios. Eso significa que la persona que escucha tu problema es la misma que diseña la solución y te acompaña después. Además, como también desarrollo sitios web, campañas digitales y agentes de IA, puedo conectar tu sistema con el resto de tu presencia digital en vez de dejarlo como una isla.</p>
+            <p>Si quieres ver cómo trabajo la información de un negocio, revisa <a href="https://kenpochile.cl" target="_blank" rel="noopener">KenpoChile</a>: el sitio ordena en páginas propias su directorio de escuelas y la información de cada cinturón, para que cualquiera la encuentre en segundos. O sitios como <a href="https://contabilidadesmel.cl" target="_blank" rel="noopener">Contabilidades Mel</a> y <a href="https://arprevencion.cl" target="_blank" rel="noopener">AR Prevención</a>, pensados para que el cliente encuentre rápido lo que necesita y pueda contactar o cotizar sin vueltas.</p>
+            <p>Y si te preocupa la inversión, cuéntame tu caso: hay instrumentos públicos de apoyo a pymes que en algunas convocatorias permiten financiar proyectos de digitalización, y también te ayudo a revisar si tu proyecto podría calzar con alguno.</p>
+
+            <h4>Da el primer paso</h4>
+            <p>No necesitas tener claro qué software quieres. Basta con que me cuentes qué tarea te está quitando más tiempo hoy. Con eso te propongo por dónde partir, sin compromiso.</p>
+            <p><a href="https://wa.me/56975233425?text=Hola%20Leonardo%2C%20le%C3%AD%20tu%20blog%20en%20gestixpro.cl%20y%20quiero%20cotizar" target="_blank" rel="noopener"><strong>Escríbeme por WhatsApp y conversemos de tu negocio →</strong></a></p>
+            <p><em>¿Conoces a alguien que siga peleando con sus planillas? Con el <a href="https://gestixpro.cl/#referidos">programa de referidos de GestixPro</a> recibes una comisión por cada cliente que me recomiendes y contrate.</em></p>
+          `
+        },
         digitalizacion: {
           slug: 'como-digitalizar-tu-negocio-en-chile',
           fecha: '2026-03-15',
